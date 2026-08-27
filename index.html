@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARINO ITO | 農業に光を、地方から世界へ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2fa84a;
+    --green-dark: #0c2f4d;
+    --blue: #1490e0;
+    --blue-dark: #06243f;
+    --red: #ef5b4a;
+    --cream: #f5f9fc;
+    --ink: #16232f;
+    --gold: #f5a623;
+    --font-serif: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+    --font-display: "Oswald", "Hiragino Kaku Gothic ProN", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.8;
+    overflow-x: hidden;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  img { max-width: 100%; display: block; }
+
+  /* ---------- SCROLL PROGRESS ---------- */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--red), var(--gold), var(--green));
+    z-index: 200;
+    transition: width 0.1s linear;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(.2,.7,.3,1), transform 0.9s cubic-bezier(.2,.7,.3,1);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---------- BG NUMERAL ---------- */
+  .bg-num {
+    position: absolute;
+    top: -0.15em;
+    right: 6px;
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 15vw, 11.5rem);
+    font-weight: 600;
+    color: rgba(13,35,58,0.05);
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.02em;
+  }
+  .vision-section .bg-num { color: rgba(255,255,255,0.06); }
+  section, .vision-inner { position: relative; }
+
+  /* ---------- HEADER ---------- */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(6, 30, 54, 0.55);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s;
+  }
+  nav {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #fff;
+    font-size: 1.05rem;
+  }
+  .logo span { color: var(--gold); }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    font-family: var(--font-display);
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    opacity: 0.72;
+    position: relative;
+    padding-bottom: 3px;
+    transition: opacity 0.2s;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.25s ease;
+  }
+  nav a:hover { opacity: 1; }
+  nav a:hover::after,
+  nav a.active::after { width: 100%; }
+  nav a.active { opacity: 1; }
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 30px;
+  }
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  }
+  .social-links a.ig {
+    background: linear-gradient(135deg, #f9ce34, #ee2a7b 55%, #6228d7);
+  }
+  .social-links a.fb {
+    background: #1877f2;
+  }
+  .social-links a:hover {
+    transform: translateY(-3px) scale(1.06);
+    filter: brightness(1.08);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+  }
+  .social-links svg { width: 24px; height: 24px; }
+
+  /* footer variant: labeled pill buttons, bigger & unmistakable */
+  .footer-social {
+    display: flex;
+    gap: 14px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px 12px 14px;
+    border-radius: 999px;
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  }
+  .footer-social a.ig {
+    background: linear-gradient(135deg, #f9ce34, #ee2a7b 55%, #6228d7);
+  }
+  .footer-social a.fb {
+    background: #1877f2;
+  }
+  .footer-social a.mail {
+    background: var(--gold);
+    color: var(--green-dark);
+  }
+  .footer-social a:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.08);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.35);
+  }
+  .footer-social svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .menu-toggle span {
+    width: 24px; height: 2px;
+    background: #fff;
+    display: block;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2) { opacity: 0; }
+  .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 720px) {
+    .menu-toggle { display: flex; }
+    nav ul {
+      position: fixed;
+      top: 58px; left: 0; right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(6,26,46,0.97);
+      backdrop-filter: blur(10px);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    nav ul.open { max-height: 400px; }
+    nav ul li { width: 100%; }
+    nav ul a {
+      display: block;
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #fff;
+    overflow: hidden;
+    background: #cfe4f2;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: -4%;
+    background: url('images/pro_hero_mountain.jpg') center 42% / cover no-repeat;
+    filter: contrast(1.05) brightness(1.03) saturate(1.12);
+    animation: heroZoom 26s ease-in-out infinite alternate;
+  }
+  .hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(200deg, rgba(20,120,200,0.16), rgba(10,20,40,0) 45%);
+    mix-blend-mode: color;
+  }
+  @keyframes heroZoom {
+    0%   { transform: scale(1) translate3d(0,0,0); }
+    100% { transform: scale(1.12) translate3d(-0.6%, -1.2%, 0); }
+  }
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.16;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(to top, rgba(4,16,32,0.92) 0%, rgba(6,26,46,0.5) 38%, rgba(8,30,54,0.15) 62%, rgba(4,16,32,0.45) 100%),
+      radial-gradient(ellipse at 20% 100%, rgba(20,120,200,0.3), transparent 55%);
+    box-shadow: inset 0 0 18vw rgba(0,0,0,0.3);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg { animation: none; }
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 120px 24px 40px;
+    width: 100%;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 34px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-content h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.1rem, 6vw, 4.4rem);
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 18px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+  .hero-content .tagline {
+    font-family: var(--font-display);
+    font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+    opacity: 0.85;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+  }
+  .hero-name {
+    margin-top: 34px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hero-name .ja {
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+  }
+  .hero-name .en {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.45);
+    padding: 13px 26px;
+    border-radius: 999px;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  }
+  .hero-cta:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .stat-bar {
+    position: relative;
+    z-index: 3;
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .stat-bar div {
+    padding: 22px 10px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.18);
+  }
+  .stat-bar div:last-child { border-right: none; }
+  .stat-bar .num {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.6vw, 1.8rem);
+    font-weight: 600;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-bar .lbl {
+    font-family: var(--font-display);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    opacity: 0.75;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 14px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    color: #fff;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    opacity: 0.75;
+    animation: bob 1.8s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%,100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 8px); }
+  }
+
+  /* ---------- PRESS STRIP ---------- */
+  .press-strip {
+    background: linear-gradient(120deg, #e9c672, #c9a24b 60%, #b8903e);
+    position: relative;
+    overflow: hidden;
+  }
+  .press-strip::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 15% 30%, rgba(255,255,255,0.35), transparent 55%);
+    pointer-events: none;
+  }
+  .press-strip a {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 34px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: var(--green-dark);
+    transition: transform 0.25s ease;
+  }
+  .press-strip a:hover { transform: translateY(-2px); }
+  .press-strip .press-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--green-dark);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .press-strip .press-icon svg { width: 26px; height: 26px; }
+  .press-strip .press-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+  }
+  .press-strip .press-label {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: rgba(31,58,26,0.7);
+  }
+  .press-strip .press-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.05rem, 2.4vw, 1.5rem);
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1.5;
+  }
+  .press-strip .arrow {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: #fff;
+    background: var(--green-dark);
+    padding: 13px 26px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+  }
+  .press-strip a:hover .arrow {
+    background: #08192c;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+  }
+  @media (max-width: 640px) {
+    .press-strip a { text-align: center; justify-content: center; }
+    .press-strip .press-body { text-align: center; }
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 100px 24px;
+  }
+  .kicker {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .kicker .num {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: var(--green);
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+  .kicker.blue .num { background: var(--blue); }
+  .kicker.dark .num { background: var(--green-dark); }
+  .kicker .label {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    color: #666;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+    margin-bottom: 26px;
+    color: var(--green-dark);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  /* ---------- PROFILE ---------- */
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .bio-photo {
+    position: relative;
+  }
+  .bio-photo img {
+    border-radius: 6px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.22);
+  }
+  .bio-photo .inset {
+    position: absolute;
+    bottom: -34px;
+    right: -34px;
+    width: 46%;
+    border: 6px solid var(--cream);
+    border-radius: 6px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.28);
+  }
+  .name-block {
+    margin-bottom: 8px;
+  }
+  .name-block .ja {
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+  }
+  .name-block .role {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    color: var(--green);
+    font-weight: 500;
+    margin-top: 8px;
+    display: block;
+  }
+  .fact-table {
+    margin: 28px 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+  .fact-table div {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-size: 0.95rem;
+  }
+  .fact-table .k {
+    font-family: var(--font-display);
+    color: #888;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+  .fact-table .v {
+    text-align: right;
+    font-weight: 600;
+  }
+  .pull-quote {
+    font-family: var(--font-serif);
+    border-left: 3px solid var(--gold);
+    padding: 4px 0 4px 20px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-top: 30px;
+  }
+
+  /* ---------- CHALLENGE ---------- */
+  .challenge-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+  .challenge-wrap img {
+    border-radius: 6px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  }
+  .challenge-wrap figure { margin: 0; }
+  .challenge-wrap figcaption {
+    margin-top: 14px;
+    font-size: 0.82rem;
+    color: #666;
+    text-align: center;
+  }
+  .goal-badge {
+    display: inline-block;
+    font-family: var(--font-display);
+    background: var(--red);
+    color: #fff;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    padding: 7px 16px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+  .challenge-wrap ul {
+    list-style: none;
+    margin: 22px 0;
+  }
+  .challenge-wrap ul li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    color: #333;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+  }
+  .challenge-wrap ul li::before {
+    content: "›";
+    position: absolute;
+    left: 0; top: 6px;
+    color: var(--blue);
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+  .reason-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .reason-cards div {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .reason-cards h4 {
+    font-size: 0.85rem;
+    color: var(--blue);
+    margin-bottom: 8px;
+    font-weight: 800;
+  }
+  .reason-cards p { font-size: 0.85rem; color: #444; }
+  .challenge-lead {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .challenge-close {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--red);
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  /* ---------- ORIGIN ---------- */
+  .origin-head {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .origin-head h2 { margin-bottom: 6px; }
+  .origin-head p {
+    color: #666;
+    font-size: 0.95rem;
+  }
+  .origin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+  .origin-card img {
+    border-radius: 8px;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.16);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+  .origin-card:hover img {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 46px rgba(0,0,0,0.22);
+  }
+  .origin-card p {
+    margin-top: 16px;
+    font-size: 0.92rem;
+    text-align: center;
+    color: #333;
+  }
+  .origin-footer {
+    margin-top: 44px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    padding: 26px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  /* ---------- VISION ---------- */
+  .vision-section {
+    background: var(--green-dark) url('images/pro_tomato_smile.jpg') center 25% / cover no-repeat;
+    color: #fff;
+    max-width: none;
+    padding: 100px 24px;
+    overflow: hidden;
+  }
+  .vision-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(180deg, rgba(6,26,46,0.95), rgba(6,26,46,0.9) 55%, rgba(6,26,46,0.97)),
+                radial-gradient(ellipse at 50% 20%, rgba(20,120,200,0.18), transparent 60%);
+  }
+  .vision-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .vision-inner .kicker { justify-content: center; }
+  .vision-inner .kicker .label { color: rgba(255,255,255,0.6); }
+  .vision-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 3.4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 46px;
+    line-height: 1.7;
+  }
+  .vision-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .vision-pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 10px;
+    padding: 22px 30px;
+    min-width: 190px;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .vision-pill:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-3px);
+  }
+  .vision-pill h3 { font-family: var(--font-serif); color: var(--gold); font-size: 1.1rem; margin-bottom: 6px; }
+  .vision-pill p { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.7); }
+  .plus { font-size: 1.6rem; color: var(--gold); font-weight: 700; }
+  .result-pill {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--green-dark);
+    padding: 16px 40px;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .result-pill:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.3);
+  }
+
+  /* ---------- PROJECT ---------- */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-top: 10px;
+  }
+  .step-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 34px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+  .step-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.1);
+  }
+  .step-card .step-photo {
+    margin: -34px -34px 24px;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+  }
+  .step-card .step-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .step-card .step-num {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .step-card h3 {
+    font-family: var(--font-serif);
+    color: var(--green-dark);
+    font-size: 1.35rem;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .step-card .highlight {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .tag {
+    font-family: var(--font-display);
+    background: rgba(63,122,53,0.1);
+    color: var(--green-dark);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    padding: 6px 13px;
+    border-radius: 999px;
+    border: 1px solid rgba(63,122,53,0.2);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .tag:hover {
+    background: rgba(63,122,53,0.18);
+    transform: translateY(-1px);
+  }
+  .related-accounts {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+  }
+  .related-accounts .rel-label {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: #888;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .related-accounts a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-right: 18px;
+    transition: color 0.2s ease;
+  }
+  .related-accounts a:hover { color: var(--gold); }
+  .related-accounts svg { width: 17px; height: 17px; flex-shrink: 0; }
+
+  /* ---------- SPONSOR ---------- */
+  .sponsor-concept {
+    background: linear-gradient(150deg, rgba(63,122,53,0.07), rgba(201,162,75,0.09));
+    border: 1px solid rgba(63,122,53,0.15);
+    border-radius: 14px;
+    padding: 44px 40px;
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .sponsor-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: var(--green);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .sponsor-concept-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 18px;
+  }
+  .sponsor-concept-text {
+    font-size: 0.98rem;
+    color: #444;
+    max-width: 52ch;
+    margin: 0 auto;
+    line-height: 1.9;
+  }
+  .sponsor-photo-band {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 56px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  }
+  .sponsor-photo-band img {
+    width: 100%;
+    aspect-ratio: 21/9;
+    object-fit: cover;
+    display: block;
+  }
+  .sponsor-block { margin-bottom: 56px; }
+  .sponsor-block:last-of-type { margin-bottom: 0; }
+  .sponsor-h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 22px;
+    padding-left: 18px;
+    border-left: 4px solid var(--gold);
+  }
+  .strength-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+  }
+  .strength-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 10px;
+    padding: 22px 20px;
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.7;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .strength-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.1);
+  }
+  .value-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 10px;
+    padding: 26px 24px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.1);
+  }
+  .value-card h4 {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .value-card ul { list-style: none; }
+  .value-card ul li {
+    font-size: 0.86rem;
+    color: #444;
+    padding: 5px 0 5px 16px;
+    position: relative;
+  }
+  .value-card ul li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 13px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .plan-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 14px;
+    padding: 30px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .plan-card:hover { transform: translateY(-5px); }
+  .plan-card.featured {
+    border: 2px solid var(--gold);
+    box-shadow: 0 16px 36px rgba(201,162,75,0.25);
+  }
+  .plan-name {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 16px;
+  }
+  .plan-price {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #888;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+  }
+  .plan-intro {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  .plan-card ul { list-style: none; }
+  .plan-card ul li {
+    font-size: 0.86rem;
+    color: #333;
+    padding: 7px 0 7px 18px;
+    position: relative;
+    border-top: 1px dashed rgba(0,0,0,0.08);
+  }
+  .plan-card ul li:first-child { border-top: none; }
+  .plan-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 6px;
+    color: var(--green);
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+  .sponsor-cta {
+    background: linear-gradient(135deg, var(--green-dark), #142a0d 65%, #0d1c09);
+    border-radius: 14px;
+    padding: 52px 40px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  }
+  .sponsor-cta-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 3.2vw, 2.1rem);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.65;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+  }
+  .sponsor-cta-note {
+    margin-top: 18px;
+    font-family: var(--font-display);
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.55);
+  }
+  .proposal-box {
+    background: var(--green-dark);
+    color: #fff;
+    border-radius: 14px;
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .proposal-box p {
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    line-height: 2;
+    max-width: 46ch;
+    margin: 0 auto 18px;
+  }
+  .proposal-box p:last-child { margin-bottom: 0; color: rgba(255,255,255,0.85); font-size: clamp(0.9rem, 1.8vw, 1.05rem); }
+  .sponsor-contact {
+    text-align: center;
+    margin-top: 56px;
+  }
+  .sponsor-contact .footer-social { justify-content: center; }
+  .sponsor-contact .footer-social a { color: #fff; }
+
+  @media (max-width: 860px) {
+    .strength-grid, .value-grid, .pricing-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .strength-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ---------- BAND ---------- */
+  .photo-band {
+    height: 260px;
+    background-image: url('images/pro_dawn.jpg');
+    background-size: cover;
+    background-position: center 60%;
+    position: relative;
+  }
+  .photo-band::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(6,30,54,0.55), rgba(6,30,54,0.15));
+  }
+  .photo-band-caption {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 24px;
+    display: flex;
+    align-items: flex-end;
+    color: #fff;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+    padding-bottom: 24px;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+  }
+  .gallery-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.14);
+  }
+  .gallery-item img {
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-item .cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 14px 14px 12px;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0));
+  }
+  .reel-block {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .reel-block .rel-label {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: #888;
+    display: block;
+    margin-bottom: 18px;
+  }
+  .reel-embed-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+    aspect-ratio: 16/9;
+    background: #000;
+  }
+  .reel-embed-wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+  }
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 70px 24px 30px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 40px;
+  }
+  footer .foot-name {
+    font-family: var(--font-serif);
+    color: #fff;
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  footer .foot-tag {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    max-width: 32ch;
+    line-height: 1.8;
+  }
+  footer h5 {
+    font-family: var(--font-display);
+    color: #fff;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    margin-bottom: 16px;
+    opacity: 0.85;
+  }
+  footer ul { list-style: none; }
+  footer ul li { margin-bottom: 10px; }
+  footer ul a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+  }
+  footer ul a:hover { color: var(--gold); }
+  .footer-bottom {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 24px 34px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.4);
+    font-family: var(--font-display);
+  }
+  @media (max-width: 720px) {
+    .footer-inner { grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  @media (max-width: 860px) {
+    .bio-grid, .challenge-wrap, .origin-grid, .steps { grid-template-columns: 1fr; }
+    .bio-photo .inset { width: 52%; right: -14px; bottom: -24px; }
+    .stat-bar { grid-template-columns: 1fr; }
+    .stat-bar div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.18); }
+    .stat-bar div:last-child { border-bottom: none; }
+    section { padding: 70px 20px; }
+    .vision-section { padding: 70px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header>
+  <nav>
+    <div class="logo">MARINO ITO<span>.</span></div>
+    <ul id="navList">
+      <li><a href="#profile">PROFILE</a></li>
+      <li><a href="#challenge">CHALLENGE</a></li>
+      <li><a href="#origin">ORIGIN</a></li>
+      <li><a href="#gallery">GALLERY</a></li>
+      <li><a href="#vision">VISION</a></li>
+      <li><a href="#project">PROJECT</a></li>
+      <li><a href="#sponsor">SPONSOR</a></li>
+    </ul>
+    <div class="social-links">
+      <a class="ig" href="https://www.instagram.com/marino_ito/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="fb" href="https://www.facebook.com/people/%E4%BC%8A%E8%97%A4%E9%BA%BB%E7%90%86%E4%B9%83/pfbid0HdNCf8TVrGvX1QvUJ6xyfq3BwbUni7KEQg5kPaDWn9rjJgyT6nBjXDjJWqKmifZ7l/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 8.5h2V5.2c-.35-.05-1.54-.15-2.94-.15-2.9 0-4.9 1.77-4.9 5.02v2.6H6.5v3.7h2.66V21h3.7v-8.63h2.55l.4-3.7h-2.95V10.4c0-1.07.29-1.9 1.14-1.9z"/></svg>
+      </a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="eyebrow">ALPINE SNOWBOARD</div>
+    <h1>根拠ある挑戦。<br>アルペンスノーボードで、世界へ。</h1>
+    <p class="tagline">Marino Ito — Agri-Athlete / Alpine Snowboarder</p>
+    <div class="hero-name">
+      <span class="ja">伊藤麻理乃</span>
+      <span class="en">MARINO ITO / ALPINE SNOWBOARDER</span>
+    </div>
+    <a href="#profile" class="hero-cta">STORYを見る ↓</a>
+  </div>
+  <div class="stat-bar">
+    <div><span class="num">主戦場</span><span class="lbl">ALPINE SNOWBOARD</span></div>
+    <div><span class="num">12年</span><span class="lbl">SKIで培った基礎（小学4年〜大学卒業）</span></div>
+    <div><span class="num">2030</span><span class="lbl">OLYMPIC TARGET</span></div>
+  </div>
+  <div class="scroll-cue">SCROLL ▾</div>
+</div>
+
+<div class="press-strip">
+  <a href="https://www.yanmar.com/jp/about/ymedia/article/hanasakabito10.html" target="_blank" rel="noopener">
+    <span class="press-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h13a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V4z"/><path d="M19 8v11a2 2 0 0 1-2 2H6"/><line x1="7" y1="8" x2="15" y2="8"/><line x1="7" y1="11.5" x2="15" y2="11.5"/><line x1="7" y1="15" x2="12" y2="15"/></svg>
+    </span>
+    <span class="press-body">
+      <span class="press-label">MEDIA / メディア掲載</span>
+      <span class="press-text">YANMAR「花咲か人 vol.10」に<br>伊藤麻理乃の挑戦が紹介されました</span>
+    </span>
+    <span class="arrow">記事を読む →</span>
+  </a>
+</div>
+
+<section id="profile">
+  <span class="bg-num">01</span>
+  <div class="kicker">
+    <span class="num">01</span>
+    <span class="label">PROFILE / 自己紹介</span>
+  </div>
+  <div class="bio-grid reveal">
+    <div class="bio-photo">
+      <img src="images/pro_headshot.jpg" alt="伊藤麻理乃 プロフィール写真">
+      <img class="inset" src="images/pro_ski_tokyo.jpg" alt="アルペンスキー競技風景">
+    </div>
+    <div>
+      <div class="name-block">
+        <span class="ja">伊藤麻理乃</span>
+        <span class="role">AGRI ATHLETE / ALPINE SNOWBOARDER</span>
+      </div>
+      <div class="fact-table">
+        <div><span class="k">OUT OF</span><span class="v">長野県川上村（農家の家庭に生まれ育つ）</span></div>
+        <div><span class="k">SKI歴</span><span class="v">小学4年生から大学卒業まで、12年間アルペンスキーに打ち込む</span></div>
+        <div><span class="k">UNIVERSITY</span><span class="v">中央大学 体育会スキー部 女子主将</span></div>
+        <div><span class="k">SKI 実績</span><span class="v">全国大会・インカレ入賞</span></div>
+        <div><span class="k">NOW</span><span class="v">大学3年次より、スキーと両立してアルペンスノーボードの競技活動を本格スタート。2030年オリンピックを目指し挑戦中</span></div>
+      </div>
+      <p class="pull-quote">「農業と競技、両方を知るバックグラウンド」</p>
+    </div>
+  </div>
+</section>
+
+<section id="challenge">
+  <span class="bg-num">02</span>
+  <div class="kicker blue">
+    <span class="num">02</span>
+    <span class="label">CHALLENGE / 挑戦</span>
+  </div>
+  <div class="challenge-wrap reveal">
+    <div>
+      <span class="goal-badge">GOAL — 2030 OLYMPIC MEDAL</span>
+      <h2>「根拠ある挑戦」</h2>
+      <p class="challenge-lead">スキーで培った12年間の経験を、スノーボードへ。</p>
+      <ul>
+        <li>小学4年生から大学卒業まで、アルペンスキー一筋12年</li>
+        <li>大学3年次より、スキーと両立してアルペンスノーボードの競技活動を本格スタート</li>
+        <li>競技経験はまだ浅いが、世界を目指すだけの確かな土台がある</li>
+        <li>2030年オリンピック出場を目標に活動中</li>
+      </ul>
+      <div class="reason-cards">
+        <div>
+          <h4>① 母の存在 — 証明された前例</h4>
+          <p>母もまた、大学4年次まで選手としてアルペンスキーに打ち込んできた一人。大学卒業後、未経験からアルペンスノーボードを始め、工夫を重ね、わずか数年で世界レベルの舞台に立った。その挑戦を一番近くで見てきたからこそ、「遅いスタートでも本気で取り組めば世界に届く」ことを、理屈でなく事実として知っている。</p>
+        </div>
+        <div>
+          <h4>② 競技特性 — 技術は引き継がれる</h4>
+          <p>アルペンスノーボードは、エッジワーク・ライン取り・スピードコントロールなど、アルペンスキーと共通する技術が土台になる競技。ゲート種目で12年間磨いてきた滑走技術は、板が変わっても失われない。だからこそ、この短期間での成長がある。</p>
+        </div>
+      </div>
+      <p class="challenge-close">根拠のない挑戦ではない。すぐそばで証明を見てきた、意志ある挑戦。</p>
+    </div>
+    <figure>
+      <img src="images/pro_jump.jpg" alt="スキーとスノーボードのギアを担いで挑む伊藤麻理乃">
+      <figcaption>スキーとスノーボード、2つのギアを担いで新たな挑戦へ。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="origin">
+  <span class="bg-num">03</span>
+  <div class="origin-head reveal">
+    <div class="kicker dark" style="justify-content:center;">
+      <span class="num">03</span>
+      <span class="label">ORIGIN / 原体験</span>
+    </div>
+    <h2>このままではダメだと思った。</h2>
+    <p>3年前、大好きな父が苦しむ姿を前に、何もできない自分の無力さを感じました。</p>
+  </div>
+  <div class="origin-grid reveal">
+    <div class="origin-card">
+      <img src="images/pro_tractor_boy.jpg" alt="トラクターの前で段ボール箱に入る少年">
+      <p>農家の家庭に生まれ、<br>その現実をずっと近くで見てきました。</p>
+    </div>
+    <div class="origin-card">
+      <img src="images/pro_night_harvest.jpg" alt="深夜まで続く収穫作業">
+      <p>大切に育てた作物のために、<br>深夜まで続く収穫作業。</p>
+    </div>
+    <div class="origin-card">
+      <img src="images/pro_family.jpg" alt="農業への疑問と悔しさ">
+      <p>それでも報われるとは限らない現実に、<br>疑問と悔しさを感じていました。</p>
+    </div>
+  </div>
+</section>
+
+<div class="photo-band"></div>
+
+<section id="gallery">
+  <span class="bg-num">04</span>
+  <div class="kicker dark">
+    <span class="num">04</span>
+    <span class="label">MOMENTS / ギャラリー</span>
+  </div>
+  <h2>雪の上でも、畑の中でも。</h2>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <img src="images/pro_childhood.jpg" alt="幼少期のスキー">
+      <div class="cap">スタートは4歳</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/pro_gate_action.jpg" alt="中央大学スキー部 競技風景">
+      <div class="cap">中央大学 体育会スキー部</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/pro_rice.jpg" alt="稲の苗を持つ様子">
+      <div class="cap">農業と向き合う日々</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/pro_tractor_cab.jpg" alt="トラクターでの作業">
+      <div class="cap">早朝からの畑仕事</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/pro_portrait_outdoor.jpg" alt="オフショット">
+      <div class="cap">オフショット</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/pro_gym_training.jpg" alt="ウエイトトレーニング">
+      <div class="cap">体づくりも欠かさない</div>
+    </div>
+  </div>
+  <div class="reel-block reveal">
+    <span class="rel-label">VIDEO</span>
+    <div class="reel-embed-wrap">
+      <video src="videos/marino_reel_landscape.mp4" controls playsinline preload="metadata"></video>
+    </div>
+  </div>
+</section>
+
+<section id="vision" class="vision-section">
+  <div class="vision-inner reveal">
+    <span class="bg-num">05</span>
+    <div class="kicker">
+      <span class="num">05</span>
+      <span class="label">VISION / ビジョン</span>
+    </div>
+    <div class="vision-title">「アグリアスリート」という生き方を確立<br>農業を"挑戦できる舞台"に</div>
+    <div class="vision-flow">
+      <div class="vision-pill">
+        <h3>アスリート</h3>
+        <p>体力・継続力・発信力</p>
+      </div>
+      <div class="plus">×</div>
+      <div class="vision-pill">
+        <h3>農業</h3>
+        <p>労働力・現場・社会課題</p>
+      </div>
+    </div>
+    <div class="result-pill">新しい価値が生まれる</div>
+  </div>
+</section>
+
+<section id="project">
+  <span class="bg-num">06</span>
+  <div class="kicker blue">
+    <span class="num">06</span>
+    <span class="label">PROJECT / アイデアを、仕組みへ</span>
+  </div>
+  <h2>個人の挑戦を、再現できる仕組みへ</h2>
+  <div class="steps reveal">
+    <div class="step-card">
+      <div class="step-photo"><img src="images/pro_tomato_action.jpg" alt="秋田県東成瀬村での農作業"></div>
+      <span class="step-num">STEP 1 — 自分で証明する</span>
+      <h3>担い手ゼロ農家再生プロジェクト</h3>
+      <p class="highlight">「アスリート×農業は成立する」</p>
+      <div class="tag-row">
+        <span class="tag">秋田県東成瀬村で活動</span>
+        <span class="tag">担い手不足の農地の再生</span>
+        <span class="tag">SNSでの発信</span>
+        <span class="tag">農業×アスリートとして関わる</span>
+        <span class="tag">競技と両立 高めあう</span>
+      </div>
+      <div class="related-accounts">
+        <span class="rel-label">関連アカウント</span>
+        <a href="https://www.instagram.com/taira.nousho" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+          農家アカウント
+        </a>
+        <a href="https://www.instagram.com/higashinarusemura" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+          東成瀬村アカウント
+        </a>
+      </div>
+    </div>
+    <div class="step-card">
+      <span class="step-num">STEP 2 — モデル化する</span>
+      <h3>個人の挑戦を"再現できる仕組み"へ</h3>
+      <p class="highlight">① 活動の構造化</p>
+      <div class="tag-row"><span class="tag">農業 × 競技 × 発信</span></div>
+      <p class="highlight" style="margin-top:16px;">② 収入の仕組み化</p>
+      <div class="tag-row">
+        <span class="tag">農業収入</span>
+        <span class="tag">スポンサー</span>
+        <span class="tag">発信価値（SNS・PR）</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sponsor">
+  <span class="bg-num">07</span>
+  <div class="kicker blue">
+    <span class="num">07</span>
+    <span class="label">SUPPORT / 応援してくださる企業様へ</span>
+  </div>
+  <h2>農業と競技、両方に本気だから<br>伝えられることがあります</h2>
+
+  <div class="sponsor-concept reveal">
+    <p class="sponsor-eyebrow">CONCEPT</p>
+    <p class="sponsor-concept-title">Agri Athlete（アグリアスリート）</p>
+    <p class="sponsor-concept-text">農業で身体を作り、競技で結果を出し、その過程を発信する。<br>「食べること＝強くなること」を、自分の生活を通してそのまま伝えていきたいと思っています。</p>
+  </div>
+
+  <div class="sponsor-block reveal">
+    <h3 class="sponsor-h3">今、やっていること</h3>
+    <div class="tag-row">
+      <span class="tag">アルペンスノーボード競技（国内・国際大会出場）</span>
+      <span class="tag">農業従事（米・野菜など）</span>
+      <span class="tag">SNS発信（トレーニング・食事・農業・ライフスタイル）</span>
+      <span class="tag">地域PR・地方創生活動</span>
+    </div>
+  </div>
+
+  <div class="sponsor-block reveal">
+    <h3 class="sponsor-h3">大切にしていること</h3>
+    <div class="strength-grid">
+      <div class="strength-card">農業も競技も、どちらも本気で向き合っていきたい</div>
+      <div class="strength-card">食べることとトレーニングを、自分の生活の中でつなげて発信していく</div>
+      <div class="strength-card">地方の農業の現場で感じたことを、素直な言葉で届ける</div>
+      <div class="strength-card">飾らない、等身大の日々をそのまま伝えていく</div>
+    </div>
+  </div>
+
+  <div class="sponsor-photo-band reveal">
+    <img src="images/pro_tomato_greenhouse.jpg" alt="ビニールハウスでの収穫作業">
+  </div>
+
+  <div class="sponsor-block reveal">
+    <h3 class="sponsor-h3">お手伝いできること</h3>
+    <div class="value-grid">
+      <div class="value-card">
+        <h4>発信・紹介</h4>
+        <ul>
+          <li>商品を実際に使いながらSNSで紹介します</li>
+          <li>普段の生活やトレーニングの中で、自然に触れてもらう形で</li>
+        </ul>
+      </div>
+      <div class="value-card">
+        <h4>イメージ・共感</h4>
+        <ul>
+          <li>健康的で、頑張っている雰囲気を一緒に届けます</li>
+          <li>一つのストーリーとして、共感してもらえる発信を意識しています</li>
+        </ul>
+      </div>
+      <div class="value-card">
+        <h4>写真・動画素材</h4>
+        <ul>
+          <li>撮影した写真・動画をそのまま使っていただけます</li>
+          <li>企業様のSNSや広告にご活用いただけます</li>
+        </ul>
+      </div>
+      <div class="value-card">
+        <h4>一緒に企画</h4>
+        <ul>
+          <li>食事やトレーニングの企画</li>
+          <li>農産物を使ったコラボ商品</li>
+          <li>イベントや講演への参加</li>
+        </ul>
+      </div>
+      <div class="value-card">
+        <h4>健康サポート</h4>
+        <ul>
+          <li>競技生活で学んできた体づくりやケアの知識を、社員の皆さん向けの教室で</li>
+          <li>オンラインレッスンでもお届けできます</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sponsor-block reveal">
+    <h3 class="sponsor-h3">サポートの形</h3>
+    <div class="sponsor-cta">
+      <p class="sponsor-cta-text">2030年冬季五輪に向けて、<br>活動をご支援いただけるスポンサー様を募っています！</p>
+      <p class="sponsor-cta-note">内容、金額など詳細は要相談</p>
+    </div>
+  </div>
+
+  <div class="sponsor-block reveal">
+    <h3 class="sponsor-h3">今後のビジョン</h3>
+    <div class="tag-row">
+      <span class="tag">世界大会での実績獲得</span>
+      <span class="tag">「アグリアスリート」という新しい価値の確立</span>
+      <span class="tag">食とスポーツをつなぐブランドの展開</span>
+      <span class="tag">地域と企業を巻き込んだ新しいモデル構築</span>
+    </div>
+  </div>
+
+  <div class="sponsor-contact reveal">
+    <h3 class="sponsor-h3" style="border:none; padding-left:0; display:inline-block;">お問い合わせ</h3>
+    <div class="footer-social">
+      <a class="ig" href="https://www.instagram.com/marino_ito/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a class="fb" href="https://www.facebook.com/people/%E4%BC%8A%E8%97%A4%E9%BA%BB%E7%90%86%E4%B9%83/pfbid0HdNCf8TVrGvX1QvUJ6xyfq3BwbUni7KEQg5kPaDWn9rjJgyT6nBjXDjJWqKmifZ7l/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 8.5h2V5.2c-.35-.05-1.54-.15-2.94-.15-2.9 0-4.9 1.77-4.9 5.02v2.6H6.5v3.7h2.66V21h3.7v-8.63h2.55l.4-3.7h-2.95V10.4c0-1.07.29-1.9 1.14-1.9z"/></svg>
+        Facebook
+      </a>
+      <a class="mail" href="mailto:marino.ito.contact@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 6l9 7 9-7"/></svg>
+        Email
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="foot-name">MARINO ITO</div>
+      <p class="foot-tag">農業に光を、地方から世界へ。スキーで培った12年を礎に、アルペンスノーボードで2030年の世界を目指す。</p>
+      <div class="footer-social">
+        <a class="ig" href="https://www.instagram.com/marino_ito/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a class="fb" href="https://www.facebook.com/people/%E4%BC%8A%E8%97%A4%E9%BA%BB%E7%90%86%E4%B9%83/pfbid0HdNCf8TVrGvX1QvUJ6xyfq3BwbUni7KEQg5kPaDWn9rjJgyT6nBjXDjJWqKmifZ7l/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 8.5h2V5.2c-.35-.05-1.54-.15-2.94-.15-2.9 0-4.9 1.77-4.9 5.02v2.6H6.5v3.7h2.66V21h3.7v-8.63h2.55l.4-3.7h-2.95V10.4c0-1.07.29-1.9 1.14-1.9z"/></svg>
+          Facebook
+        </a>
+        <a class="mail" href="mailto:marino.ito.contact@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 6l9 7 9-7"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+    <div>
+      <h5>MENU</h5>
+      <ul>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#origin">Origin</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>MORE</h5>
+      <ul>
+        <li><a href="#vision">Vision</a></li>
+        <li><a href="#project">Project</a></li>
+        <li><a href="#sponsor">Sponsor</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© MARINO ITO — AGRI ATHLETE / ALPINE SNOWBOARDER</div>
+</footer>
+
+<script>
+  // scroll progress bar
+  const progressBar = document.getElementById('progressBar');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (height > 0 ? (scrollTop / height) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // scroll-spy nav
+  const navLinks = document.querySelectorAll('#navList a');
+  const sections = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = '#' + entry.target.id;
+      const link = document.querySelector(`#navList a[href="${id}"]`);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(sec => spyObserver.observe(sec));
+
+  // mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navList = document.getElementById('navList');
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('open');
+    navList.classList.toggle('open');
+  });
+  navList.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menuToggle.classList.remove('open');
+      navList.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
