@@ -449,11 +449,14 @@
     background: radial-gradient(circle at 15% 30%, rgba(255,255,255,0.35), transparent 55%);
     pointer-events: none;
   }
-  .press-strip a {
+  .press-strip-inner {
     position: relative;
     max-width: 1180px;
     margin: 0 auto;
-    padding: 34px 24px;
+    padding: 10px 24px;
+  }
+  .press-strip a {
+    padding: 22px 0;
     display: flex;
     align-items: center;
     gap: 24px;
@@ -462,6 +465,11 @@
     text-decoration: none;
     color: var(--green-dark);
     transition: transform 0.25s ease;
+  }
+  .press-divider {
+    height: 1px;
+    background: rgba(31,58,26,0.2);
+    margin: 0 20px;
   }
   .press-strip a:hover { transform: translateY(-2px); }
   .press-strip .press-icon {
@@ -1426,16 +1434,29 @@
 </div>
 
 <div class="press-strip">
-  <a href="https://www.yanmar.com/jp/about/ymedia/article/hanasakabito10.html" target="_blank" rel="noopener">
-    <span class="press-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h13a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V4z"/><path d="M19 8v11a2 2 0 0 1-2 2H6"/><line x1="7" y1="8" x2="15" y2="8"/><line x1="7" y1="11.5" x2="15" y2="11.5"/><line x1="7" y1="15" x2="12" y2="15"/></svg>
-    </span>
-    <span class="press-body">
-      <span class="press-label">MEDIA / メディア掲載</span>
-      <span class="press-text">YANMAR「花咲か人 vol.10」に<br>伊藤麻理乃の挑戦が紹介されました</span>
-    </span>
-    <span class="arrow">記事を読む →</span>
-  </a>
+  <div class="press-strip-inner">
+    <a href="https://akita-wakamono-challenge.com/news/%E4%BB%A4%E5%92%8C8%E5%B9%B4%E5%BA%A6%E3%80%8C%E3%82%B7%E3%83%B3%E3%83%BB%E8%8B%A5%E8%80%85%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E5%BF%9C%E6%8F%B4%E4%BA%8B%E6%A5%AD%E3%80%8D%E3%83%88%E3%83%A9/" target="_blank" rel="noopener">
+      <span class="press-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+      </span>
+      <span class="press-body">
+        <span class="press-label">NEWS / お知らせ</span>
+        <span class="press-text">秋田県「シン・若者チャレンジ応援事業」<br>トライアル支援対象者に選ばれました</span>
+      </span>
+      <span class="arrow">記事を読む →</span>
+    </a>
+    <div class="press-divider"></div>
+    <a href="https://www.yanmar.com/jp/about/ymedia/article/hanasakabito10.html" target="_blank" rel="noopener">
+      <span class="press-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h13a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V4z"/><path d="M19 8v11a2 2 0 0 1-2 2H6"/><line x1="7" y1="8" x2="15" y2="8"/><line x1="7" y1="11.5" x2="15" y2="11.5"/><line x1="7" y1="15" x2="12" y2="15"/></svg>
+      </span>
+      <span class="press-body">
+        <span class="press-label">MEDIA / メディア掲載</span>
+        <span class="press-text">YANMAR「花咲か人 vol.10」に<br>伊藤麻理乃の挑戦が紹介されました</span>
+      </span>
+      <span class="arrow">記事を読む →</span>
+    </a>
+  </div>
 </div>
 
 <section id="profile">
