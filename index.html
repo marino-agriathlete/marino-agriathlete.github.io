@@ -347,6 +347,9 @@
     font-weight: 300;
     letter-spacing: 0.06em;
   }
+  @media (max-width: 600px) {
+    .hero-content h1 { font-size: 1.7rem; line-height: 1.5; }
+  }
   .hero-name {
     margin-top: 34px;
     display: flex;
@@ -710,12 +713,83 @@
     font-weight: 800;
   }
   .reason-cards p { font-size: 0.85rem; color: #444; }
+  @media (max-width: 600px) {
+    .reason-cards { grid-template-columns: 1fr; }
+  }
   .challenge-lead {
     font-size: 1.05rem;
     font-weight: 700;
     color: var(--ink);
     margin-bottom: 18px;
   }
+  .roadmap-title {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--green-dark);
+    font-weight: 600;
+    margin: 44px 0 22px;
+    text-align: center;
+  }
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+  .road-step {
+    text-align: center;
+    padding-top: 16px;
+    position: relative;
+    border-top: 2px solid rgba(0,0,0,0.12);
+  }
+  .road-step::before {
+    content: "";
+    position: absolute;
+    top: -6px; left: 50%;
+    transform: translateX(-50%);
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+  .road-step.now { border-top-color: var(--blue); }
+  .road-step.now::before { background: var(--blue); width: 11px; height: 11px; top: -7px; }
+  .road-step.goal { border-top-color: var(--gold); }
+  .road-step.goal::before { background: var(--gold); width: 11px; height: 11px; top: -7px; }
+  .road-step .yr {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .road-step.now .yr { color: var(--blue); }
+  .road-step.goal .yr { color: var(--gold); font-size: 1rem; }
+  .road-step .yr i {
+    font-style: normal;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--blue);
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-left: 6px;
+    letter-spacing: 0.02em;
+  }
+  .road-step p {
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  .road-step.goal p, .road-step.now p { color: var(--ink); font-weight: 600; }
+  @media (max-width: 720px) {
+    .roadmap { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+  }
+  @media (max-width: 480px) {
+    .roadmap { grid-template-columns: 1fr; gap: 20px; }
+  }
+
   .challenge-close {
     font-family: var(--font-serif);
     font-size: 1.05rem;
@@ -1195,7 +1269,6 @@
   }
   @media (max-width: 600px) {
     .strength-grid { grid-template-columns: 1fr 1fr; }
-    .vision-title-break { display: none; }
   }
 
   /* ---------- BAND ---------- */
@@ -1413,7 +1486,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 8.5h2V5.2c-.35-.05-1.54-.15-2.94-.15-2.9 0-4.9 1.77-4.9 5.02v2.6H6.5v3.7h2.66V21h3.7v-8.63h2.55l.4-3.7h-2.95V10.4c0-1.07.29-1.9 1.14-1.9z"/></svg>
       </a>
     </div>
-    <button class="view-toggle" id="viewToggle" type="button">
+    <button class="view-toggle" id="viewToggle" type="button" aria-label="PC版に切り替え">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>
       <span id="viewToggleLabel">PC版</span>
     </button>
@@ -1427,8 +1500,8 @@
   <div class="hero-bg"></div>
   <div class="hero-grain"></div>
   <div class="hero-content">
-    <div class="eyebrow">ALPINE SNOWBOARD</div>
-    <h1>根拠ある挑戦。<br>アルペンスノーボードで、世界へ。</h1>
+    <div class="eyebrow">AGRI ATHLETE / ALPINE SNOWBOARDER</div>
+    <h1>根拠ある挑戦。<br>アルペンスノーボードで、<span class="sp-break"><br></span>世界へ。</h1>
     <p class="tagline">Marino Ito — Agri-Athlete / Alpine Snowboarder</p>
     <div class="hero-name">
       <span class="ja">伊藤麻理乃</span>
@@ -1488,12 +1561,12 @@
       </div>
       <div class="fact-table">
         <div><span class="k">OUT OF</span><span class="v">長野県川上村（農家の家庭に生まれ育つ）</span></div>
-        <div><span class="k">SKI歴</span><span class="v">小学4年生から大学卒業まで、12年間アルペンスキーに打ち込む</span></div>
+        <div><span class="k">SKI歴</span><span class="v">小学4年生から大学卒業まで、<span class="sp-break"><br></span>12年間アルペンスキーに打ち込む</span></div>
         <div><span class="k">UNIVERSITY</span><span class="v">中央大学 体育会スキー部 女子主将</span></div>
         <div><span class="k">SKI 実績</span><span class="v">全国大会・インカレ入賞</span></div>
-        <div><span class="k">NOW</span><span class="v">大学3年次より、スキーと両立してアルペンスノーボードの競技活動を本格スタート。2030年フランス冬季オリンピックを目指し挑戦中</span></div>
+        <div><span class="k">NOW</span><span class="v">大学3年次より、スキーと両立してアルペンスノーボードの競技活動を本格スタート。2030年フランス冬季オリンピックを<span class="sp-break"><br></span>目指し挑戦中</span></div>
       </div>
-      <p class="pull-quote">「農業と競技、両方を知るバックグラウンド」</p>
+      <p class="pull-quote">「農業と競技、両方を知る<span class="sp-break"><br></span>バックグラウンド」</p>
     </div>
   </div>
 </section>
@@ -1506,9 +1579,9 @@
   </div>
   <div class="challenge-wrap reveal">
     <div>
-      <span class="goal-badge">GOAL — 2030 FRANCE OLYMPIC</span>
+      <span class="goal-badge">GOAL — 2030 FRANCE WINTER OLYMPICS</span>
       <h2>「根拠ある挑戦」</h2>
-      <p class="challenge-lead">スキーで培った12年間の経験を、スノーボードへ。</p>
+      <p class="challenge-lead">スキーで培った12年間の経験を、<span class="sp-break"><br></span>スノーボードへ。</p>
       <ul>
         <li>小学4年生から大学卒業まで、アルペンスキー一筋12年</li>
         <li>大学3年次より、スキーと両立してアルペンスノーボードの競技活動を本格スタート</li>
@@ -1532,6 +1605,20 @@
       <figcaption>スキーとスノーボード、2つのギアを担いで新たな挑戦へ。</figcaption>
     </figure>
   </div>
+
+  <div class="roadmap-title">現在地 — 2030年フランス冬季五輪への軌跡</div>
+  <div class="roadmap reveal">
+    <div class="road-step"><span class="yr">〜2023</span><p>アルペンスキー<br>インターカレッジ2種目入賞<br>ジュニアオリンピック入賞</p></div>
+    <div class="road-step"><span class="yr">2024–25</span><p>アルペンスノーボードの活動をスキーと両立してスタート</p></div>
+    <div class="road-step"><span class="yr">2025–26</span><p>アルペンスノーボード<br>日本スノーボード協会主催大会 優勝</p></div>
+    <div class="road-step now"><span class="yr">2026–27<i>NOW</i></span><p>主戦場をスノーボード1本へ転向</p></div>
+  </div>
+  <div class="roadmap reveal">
+    <div class="road-step"><span class="yr">STEP 1</span><p>アジアカップシリーズ総合優勝<br>全日本選手権優秀・ナショナルチームB選出</p></div>
+    <div class="road-step"><span class="yr">STEP 2</span><p>FISポイント200点以上獲得<br>ナショナルチームA選出</p></div>
+    <div class="road-step"><span class="yr">STEP 3</span><p>W杯出場<br>W杯上位入賞</p></div>
+    <div class="road-step goal"><span class="yr">2030</span><p>フランス冬季オリンピックで活躍</p></div>
+  </div>
 </section>
 
 <section id="origin">
@@ -1541,7 +1628,7 @@
       <span class="num">03</span>
       <span class="label">ORIGIN / 原体験</span>
     </div>
-    <h2>このままではダメだと思った。</h2>
+    <h2>このままではダメだと<span class="sp-break"><br></span>思った。</h2>
     <p>3年前、大好きな父が苦しむ姿を前に、何もできない自分の無力さを感じました。</p>
   </div>
   <div class="origin-grid reveal">
@@ -1559,8 +1646,6 @@
     </div>
   </div>
 </section>
-
-<div class="photo-band"></div>
 
 <section id="gallery">
   <span class="bg-num">04</span>
@@ -1599,8 +1684,8 @@
       <div class="cap">全日本学生選手権</div>
     </div>
     <div class="gallery-item">
-      <img src="images/pro_tomato_smile.jpg" alt="ビニールハウスでトマトを手に笑顔を見せる伊藤麻理乃">
-      <div class="cap">トマトの収穫</div>
+      <img src="images/pro_hero_bw.jpg" alt="スノーボードを手に山と向き合う伊藤麻理乃">
+      <div class="cap">山と向き合う瞬間</div>
     </div>
     <div class="gallery-item">
       <img src="images/pro_snowboard_action.jpg" alt="スノーボードでのアクションショット">
@@ -1650,7 +1735,7 @@
     <div class="step-card">
       <div class="step-photo"><img src="images/pro_tomato_action.jpg" alt="秋田県東成瀬村での農作業"></div>
       <span class="step-num">STEP 1 — 自分で証明する</span>
-      <h3>担い手ゼロ農家再生プロジェクト</h3>
+      <h3>担い手ゼロ農家再生<span class="sp-break"><br></span>プロジェクト</h3>
       <p class="highlight">「アスリート×農業は成立する」</p>
       <div class="tag-row">
         <span class="tag">秋田県東成瀬村で活動</span>
@@ -1672,15 +1757,13 @@
       </div>
     </div>
     <div class="step-card">
-      <span class="step-num">STEP 2 — モデル化する</span>
-      <h3>個人の挑戦を"再現できる仕組み"へ</h3>
-      <p class="highlight">① 活動の構造化</p>
-      <div class="tag-row"><span class="tag">農業 × 競技 × 発信</span></div>
-      <p class="highlight" style="margin-top:16px;">② 収入の仕組み化</p>
+      <span class="step-num">STEP 2 — 広げていく</span>
+      <h3>個人の挑戦を"広げられる形"へ</h3>
+      <p class="highlight">この取り組みを、他の農業×競技を志す人にも広げられるように。農業・競技・発信の3つを軸にした活動を、一つひとつ形にしています。</p>
       <div class="tag-row">
-        <span class="tag">農業収入</span>
-        <span class="tag">スポンサー</span>
-        <span class="tag">発信価値（SNS・PR）</span>
+        <span class="tag">農業</span>
+        <span class="tag">競技</span>
+        <span class="tag">発信</span>
       </div>
     </div>
   </div>
