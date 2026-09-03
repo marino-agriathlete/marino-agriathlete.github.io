@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>伊藤麻理乃 スポンサー提案資料</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0c2f4d; --gold: #c9962f; --green: #2fa84a; --blue: #1490e0; --red: #ef5b4a; --cream: #f8faf6; --ink: #16232f;
+    --serif: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+    --disp: "Oswald", "Hiragino Kaku Gothic ProN", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #444; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @page { size: 13.333in 7.5in; margin: 0; }
+  img { max-width: 100%; display: block; }
+
+  .page {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+    page-break-after: always;
+    margin: 0 auto 24px;
+  }
+  .page:last-child { page-break-after: auto; margin-bottom: 0; }
+  @media print { .page { margin: 0; } }
+
+  /* shared */
+  .kicker { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .kicker .rule { width: 30px; height: 1px; background: rgba(12,47,77,0.28); }
+  .kicker .num { font-family: var(--disp); font-size: 13px; letter-spacing: 0.14em; font-weight: 600; }
+  .kicker .lbl { font-family: var(--serif); font-size: 15px; color: var(--navy); font-weight: 700; }
+  .footer-row { position: absolute; left: 76px; right: 76px; bottom: 26px; display: flex; justify-content: space-between; z-index: 3; }
+  .footer-row .l { font-family: var(--disp); font-size: 10px; letter-spacing: 0.12em; color: #9aa5ac; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-family: var(--disp); background: rgba(12,47,77,0.07); color: var(--navy); font-size: 11px; padding: 6px 13px; border-radius: 999px; border: 1px solid rgba(12,47,77,0.14); white-space: nowrap; }
+
+  /* ===== 01 COVER ===== */
+  #cover { background: #06213a; }
+  #cover > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
+  #cover .scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(5,20,38,0.35) 0%, rgba(5,20,38,0.35) 40%, rgba(4,16,30,0.96) 92%),
+      linear-gradient(100deg, rgba(4,16,30,0.75) 0%, rgba(4,16,30,0.15) 62%);
+  }
+  #cover .content { position: absolute; left: 76px; right: 76px; bottom: 68px; z-index: 2; color: #fff; }
+  #cover .eyebrow { display: flex; align-items: center; gap: 12px; font-family: var(--disp); font-size: 14px; letter-spacing: 0.34em; color: var(--gold); font-weight: 600; margin-bottom: 22px; }
+  #cover .eyebrow .rule { width: 36px; height: 1px; background: var(--gold); }
+  #cover h1 { font-family: var(--serif); font-weight: 700; font-size: 58px; line-height: 1.38; text-shadow: 0 3px 16px rgba(0,0,0,0.5); max-width: 900px; }
+  #cover .role { margin-top: 22px; display: flex; align-items: baseline; gap: 14px; }
+  #cover .role .ja { font-family: var(--serif); font-size: 22px; font-weight: 700; }
+  #cover .role .en { font-family: var(--disp); font-size: 13px; letter-spacing: 0.1em; color: rgba(255,255,255,0.78); }
+  #cover .target { margin-top: 14px; font-size: 15px; color: rgba(255,255,255,0.82); }
+  #cover .footer-row .l { color: rgba(255,255,255,0.55); }
+
+  /* ===== 02 PROFILE ===== */
+  #profile { padding: 52px 76px 0; }
+  #profile .kicker .num { color: var(--gold); }
+  #profile .grid { display: grid; grid-template-columns: 300px 1fr; gap: 56px; }
+  #profile .photo-col { position: relative; }
+  #profile .main-photo { width: 300px; height: 372px; border-radius: 10px; overflow: hidden; box-shadow: 0 18px 36px rgba(12,47,77,0.22); }
+  #profile .main-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  #profile .inset { position: absolute; left: -18px; bottom: -26px; width: 148px; height: 108px; border-radius: 8px; overflow: hidden; border: 4px solid var(--cream); box-shadow: 0 10px 22px rgba(12,47,77,0.28); }
+  #profile .inset img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+  #profile h1 { font-family: var(--serif); font-weight: 700; font-size: 38px; color: var(--navy); }
+  #profile .role { margin-top: 6px; font-family: var(--disp); font-size: 13.5px; letter-spacing: 0.1em; color: var(--green); font-weight: 600; }
+  #profile dl { margin: 26px 0 0; display: flex; flex-direction: column; gap: 12px; }
+  #profile .row { display: flex; align-items: baseline; gap: 22px; }
+  #profile .row dt { flex: 0 0 108px; font-family: var(--disp); font-size: 10.5px; letter-spacing: 0.08em; color: #8a95a0; font-weight: 600; }
+  #profile .row dd { font-size: 14px; line-height: 1.6; }
+  #profile .stats { margin-top: 26px; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--navy); border-radius: 8px; overflow: hidden; }
+  #profile .stats div { padding: 14px 10px; text-align: center; border-right: 1px solid rgba(255,255,255,0.14); }
+  #profile .stats div:last-child { border-right: none; }
+  #profile .stats .num { display: block; font-family: var(--disp); font-size: 19px; font-weight: 600; color: var(--gold); }
+  #profile .stats .lbl { display: block; margin-top: 3px; font-family: var(--disp); font-size: 9.5px; color: rgba(255,255,255,0.72); }
+  #profile .quote { margin-top: 22px; font-family: var(--serif); font-weight: 700; font-size: 17px; color: var(--navy); border-left: 3px solid var(--gold); padding-left: 16px; }
+
+  /* ===== 03 CHALLENGE ===== */
+  #challenge { padding: 52px 76px 0; }
+  #challenge .kicker .num { color: var(--blue); }
+  #challenge .grid { display: grid; grid-template-columns: 1fr 360px; gap: 48px; align-items: center; min-height: 500px; }
+  #challenge h1 { font-family: var(--serif); font-weight: 700; font-size: 32px; color: var(--navy); margin-bottom: 14px; }
+  #challenge .lead { font-size: 14.5px; line-height: 1.85; color: #444; max-width: 560px; margin-bottom: 24px; }
+  #challenge .reason { display: flex; gap: 14px; margin-bottom: 20px; }
+  #challenge .reason .n { flex: 0 0 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--gold); font-family: var(--disp); font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+  #challenge .reason h3 { font-family: var(--serif); font-size: 16.5px; color: var(--navy); font-weight: 700; margin: 2px 0 6px; }
+  #challenge .reason p { font-size: 13px; line-height: 1.75; color: #444; max-width: 560px; }
+  #challenge .photo { width: 360px; height: 300px; border-radius: 10px; overflow: hidden; box-shadow: 0 18px 36px rgba(12,47,77,0.2); }
+  #challenge .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  #challenge .band { position: absolute; left: 0; right: 0; bottom: 0; background: var(--navy); padding: 24px 76px; }
+  #challenge .band p { font-family: var(--serif); font-weight: 700; font-size: 18px; color: #fff; }
+  #challenge .band p span { color: var(--gold); }
+  #challenge .band .pg { position: absolute; right: 76px; bottom: 24px; font-family: var(--disp); font-size: 10px; letter-spacing: 0.12em; color: rgba(255,255,255,0.55); }
+
+  /* ===== 04 ORIGIN ===== */
+  #origin { padding: 52px 76px 0; background: linear-gradient(160deg, #0a1f34 0%, #06131f 100%); }
+  #origin .kicker .num { color: var(--gold); }
+  #origin .kicker .rule { background: rgba(255,255,255,0.24); }
+  #origin .kicker .lbl { color: #fff; }
+  #origin h1 { font-family: var(--serif); font-weight: 700; font-size: 34px; color: #fff; margin-bottom: 14px; }
+  #origin .lead { font-size: 14.5px; line-height: 1.85; color: rgba(255,255,255,0.78); max-width: 760px; margin-bottom: 40px; }
+  #origin .photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  #origin .ph { border-radius: 10px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 18px 34px rgba(0,0,0,0.35); }
+  #origin .ph img { width: 100%; height: 100%; object-fit: cover; }
+  #origin figcaption { margin-top: 14px; font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.65); }
+  #origin .footer-row .l { color: rgba(255,255,255,0.4); }
+
+  /* ===== 05 VISION ===== */
+  #vision { background: #08192b; }
+  #vision > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  #vision .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,20,36,0.86) 0%, rgba(6,20,36,0.9) 100%); }
+  #vision .content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 76px; }
+  #vision .kicker { justify-content: center; font-family: var(--disp); font-size: 13px; letter-spacing: 0.2em; color: var(--gold); font-weight: 600; margin-bottom: 24px; }
+  #vision .kicker .rule { background: var(--gold); }
+  #vision h1 { font-family: var(--serif); font-weight: 700; font-size: 34px; line-height: 1.6; color: #fff; margin-bottom: 46px; }
+  #vision .eq { display: flex; align-items: center; gap: 26px; }
+  #vision .box { width: 250px; padding: 26px 18px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); }
+  #vision .box h4 { font-family: var(--serif); font-size: 18px; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+  #vision .box p { font-family: var(--disp); font-size: 11.5px; color: rgba(255,255,255,0.72); }
+  #vision .op { width: 46px; height: 46px; border-radius: 50%; background: var(--gold); color: var(--navy); font-size: 20px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  #vision .pill { margin-top: 40px; padding: 12px 34px; border-radius: 999px; background: var(--gold); color: var(--navy); font-family: var(--serif); font-weight: 700; font-size: 16px; }
+  #vision .footer-row .l { color: rgba(255,255,255,0.4); }
+
+  /* ===== 06 PROJECT ===== */
+  #project { padding: 52px 76px 0; }
+  #project .kicker .num { color: var(--blue); }
+  #project h1 { font-family: var(--serif); font-weight: 700; font-size: 30px; color: var(--navy); margin-bottom: 30px; }
+  #project .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
+  #project .step-num { font-family: var(--disp); font-size: 11.5px; letter-spacing: 0.1em; color: var(--blue); font-weight: 600; display: block; margin-bottom: 8px; }
+  #project h3 { font-family: var(--serif); font-size: 18px; color: var(--navy); font-weight: 700; margin-bottom: 10px; }
+  #project .photo { width: 100%; height: 190px; border-radius: 10px; overflow: hidden; margin-bottom: 18px; box-shadow: 0 14px 28px rgba(12,47,77,0.18); }
+  #project .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+  #project p.body { font-size: 13px; line-height: 1.75; color: #444; margin-bottom: 14px; }
+  #project .sub { margin-top: 22px; }
+  #project .sub h4 { font-family: var(--serif); font-size: 14.5px; color: var(--navy); font-weight: 700; margin-bottom: 6px; }
+
+  /* ===== 07 SUPPORT ===== */
+  #support { padding: 52px 76px 0; }
+  #support .kicker .num { color: var(--blue); }
+  #support h1 { font-family: var(--serif); font-weight: 700; font-size: 28px; color: var(--navy); margin-bottom: 30px; }
+  #support .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  #support .card { background: #fff; border: 1px solid rgba(12,47,77,0.08); border-radius: 10px; padding: 22px 22px 24px; box-shadow: 0 10px 22px rgba(12,47,77,0.06); }
+  #support .icon { width: 42px; height: 42px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  #support .icon svg { width: 21px; height: 21px; stroke: var(--gold); }
+  #support h4 { font-size: 15px; color: var(--navy); font-weight: 700; margin-bottom: 8px; }
+  #support .card p { font-size: 12.5px; line-height: 1.75; color: #555; }
+
+  /* ===== 08 BUDGET ===== */
+  #budget { padding: 52px 76px 0; }
+  #budget .kicker .num { color: var(--red); }
+  #budget h1 { font-family: var(--serif); font-weight: 700; font-size: 27px; color: var(--navy); margin-bottom: 8px; }
+  #budget .lead { font-size: 13.5px; color: #555; margin-bottom: 26px; }
+  #budget .grid { display: grid; grid-template-columns: 1fr 300px; gap: 44px; }
+  #budget .item { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(12,47,77,0.1); }
+  #budget .item .name { font-size: 14px; font-weight: 700; }
+  #budget .item .sub { display: block; margin-top: 3px; font-size: 11px; color: #8a95a0; font-weight: 400; }
+  #budget .item .amt { font-family: var(--disp); font-size: 16px; font-weight: 600; color: var(--red); flex-shrink: 0; }
+  #budget .total-card { background: var(--navy); border-radius: 10px; padding: 30px 26px; text-align: center; height: fit-content; position: relative; overflow: hidden; }
+  #budget .total-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
+  #budget .total-card .cap { font-family: var(--disp); font-size: 12px; letter-spacing: 0.1em; color: rgba(255,255,255,0.75); margin-bottom: 10px; }
+  #budget .total-card .num { font-family: var(--serif); font-size: 34px; font-weight: 700; color: var(--gold); }
+  #budget .total-card .note { margin-top: 16px; font-size: 12px; line-height: 1.75; color: rgba(255,255,255,0.72); }
+
+  /* ===== 09 PLAN ===== */
+  #plan { padding: 52px 76px 0; }
+  #plan .kicker .num { color: var(--gold); }
+  #plan h1 { font-family: var(--serif); font-weight: 700; font-size: 27px; color: var(--navy); margin-bottom: 8px; }
+  #plan .lead { font-size: 13.5px; color: #555; margin-bottom: 28px; }
+  #plan .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  #plan .card { background: #fff; border: 1.5px solid rgba(12,47,77,0.12); border-radius: 12px; padding: 26px 24px; display: flex; flex-direction: column; gap: 16px; }
+  #plan .card.gold { border-color: var(--gold); box-shadow: 0 16px 34px rgba(201,150,47,0.18); position: relative; }
+  #plan .card.gold::before { content: "RECOMMENDED"; position: absolute; top: -12px; left: 24px; background: var(--gold); color: #fff; font-family: var(--disp); font-size: 9.5px; letter-spacing: 0.1em; padding: 4px 12px; border-radius: 999px; }
+  #plan .tier { font-family: var(--disp); font-size: 13px; letter-spacing: 0.14em; font-weight: 600; color: var(--ink); }
+  #plan .card.silver .tier { color: var(--blue); }
+  #plan .card.gold .tier { color: var(--gold); }
+  #plan .price { font-family: var(--serif); font-size: 24px; font-weight: 700; color: var(--navy); }
+  #plan .price span { font-family: var(--disp); font-size: 12px; color: #8a95a0; font-weight: 500; }
+  #plan ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  #plan li { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; line-height: 1.6; color: #444; }
+  #plan li svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 2px; stroke: var(--green); }
+  #plan .note { margin-top: 20px; font-size: 11px; color: #8a95a0; }
+
+  /* ===== 10 CONTACT ===== */
+  #contact { background: #06131f; }
+  #contact > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 65%; }
+  #contact .scrim { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(5,17,30,0.94) 0%, rgba(5,17,30,0.78) 46%, rgba(5,17,30,0.4) 100%); }
+  #contact .content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 0 76px; max-width: 760px; }
+  #contact .eyebrow { display: flex; align-items: center; gap: 12px; font-family: var(--disp); font-size: 13px; letter-spacing: 0.3em; color: var(--gold); font-weight: 600; margin-bottom: 20px; }
+  #contact .eyebrow .rule { width: 30px; height: 1px; background: var(--gold); }
+  #contact h1 { font-family: var(--serif); font-weight: 700; font-size: 40px; color: #fff; margin-bottom: 20px; }
+  #contact .sub { font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.82); max-width: 520px; margin-bottom: 44px; }
+  #contact .contacts { display: flex; flex-direction: column; gap: 14px; }
+  #contact .contacts a { display: flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; font-family: var(--disp); font-size: 15px; font-weight: 500; }
+  #contact .contacts svg { width: 18px; height: 18px; flex-shrink: 0; stroke: var(--gold); }
+  #contact .contacts .site { margin-top: 4px; font-size: 12px; color: rgba(255,255,255,0.55); }
+  #contact .name-tag { position: absolute; left: 76px; bottom: 30px; z-index: 2; font-family: var(--disp); font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.55); }
+  #contact .pg { position: absolute; right: 76px; bottom: 30px; z-index: 2; font-family: var(--disp); font-size: 10px; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); }
+</style>
+</head>
+<body>
+
+<!-- ============ 01 COVER ============ -->
+<div class="page" id="cover">
+  <img src="images/print/pro_hero_mountain.jpg" alt="雪山でのアルペンスノーボード">
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="eyebrow"><span class="rule"></span>SPONSORSHIP PROPOSAL</div>
+    <h1>農業に光を、<br>地方から世界へ。</h1>
+    <div class="role">
+      <span class="ja">伊藤麻理乃</span>
+      <span class="en">MARINO ITO — AGRI ATHLETE / ALPINE SNOWBOARDER</span>
+    </div>
+    <div class="target">2030年冬季オリンピックを目指して</div>
+  </div>
+  <div class="footer-row"><span class="l">MARINO ITO — SPONSORSHIP PROPOSAL</span><span class="l">01 / 10</span></div>
+</div>
+
+<!-- ============ 02 PROFILE ============ -->
+<div class="page" id="profile">
+  <div class="kicker"><span class="num">SECTION 01</span><span class="rule"></span><span class="lbl">PROFILE / 自己紹介</span></div>
+  <div class="grid">
+    <div class="photo-col">
+      <div class="main-photo"><img src="images/pro_headshot.jpg" alt="伊藤麻理乃"></div>
+      <div class="inset"><img src="images/print/pro_award_smile.jpg" alt="表彰にて"></div>
+    </div>
+    <div>
+      <h1>伊藤麻理乃</h1>
+      <div class="role">AGRI ATHLETE / ALPINE SNOWBOARDER</div>
+      <dl>
+        <div class="row"><dt>OUT OF</dt><dd>長野県川上村（農家の家庭に生まれ育つ）</dd></div>
+        <div class="row"><dt>SKI歴</dt><dd>小学4年生から大学卒業まで、12年間アルペンスキーに打ち込む</dd></div>
+        <div class="row"><dt>UNIVERSITY</dt><dd>中央大学 体育会スキー部 女子主将</dd></div>
+        <div class="row"><dt>SKI 実績</dt><dd>全国大会・インカレ入賞</dd></div>
+        <div class="row"><dt>NOW</dt><dd>大学3年次より、スキーと両立してアルペンスノーボードの競技活動をスタート。2030年オリンピックを目指し挑戦中</dd></div>
+      </dl>
+      <div class="stats">
+        <div><span class="num">全国10位</span><span class="lbl">学生選手権 2種目入賞</span></div>
+        <div><span class="num">競技歴2年</span><span class="lbl">で欧州・アジア大会に出場</span></div>
+        <div><span class="num">12年</span><span class="lbl">アルペンスキーで培った基礎</span></div>
+      </div>
+      <div class="quote">「農業と競技、両方を知るバックグラウンド」</div>
+    </div>
+  </div>
+  <div class="footer-row"><span class="l">MARINO ITO — SPONSORSHIP PROPOSAL</span><span class="l">02 / 10</span></div>
+</div>
+
+<!-- ============ 03 CHALLENGE ============ -->
+<div class="page" id="challenge">
+  <div class="kicker"><span class="num">SECTION 02</span><span class="rule"></span><span class="lbl">CHALLENGE / 挑戦</span></div>
+  <div class="grid">
+    <div>
+      <h1>「根拠ある挑戦」</h1>
+      <p class="lead">スキーで培った12年間の経験を、スノーボードへ。競技歴はまだ浅いが、世界を目指すだけの確かな土台がある。</p>
+      <div class="reason">
+        <div class="n">1</div>
+        <div>
+          <h3>母の存在 — 証明された前例</h3>
+          <p>母もまた、大学4年次まで選手としてアルペンスキーに打ち込んできた一人。大学卒業後、未経験からアルペンスノーボードを始め、工夫を重ね、わずか数年で世界レベルの舞台に立った。「遅いスタートでも本気で取り組めば世界に届く」ことを、事実として知っている。</p>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="n">2</div>
+        <div>
+          <h3>競技特性 — 技術は引き継がれる</h3>
+          <p>アルペンスノーボードは、エッジワーク・ライン取り・スピードコントロールなど、アルペンスキーと共通する技術が土台になる競技。12年間磨いてきた滑走技術は、板が変わっても失われない。</p>
+        </div>
+      </div>
+    </div>
+    <div class="photo"><img src="images/print/pro_hero_action.jpg" alt="アルペンスノーボード競技"></div>
+  </div>
+  <div class="band">
+    <p>根拠のない挑戦ではない。すぐそばで証明を見てきた、<span>意志ある挑戦。</span></p>
+    <span class="pg">03 / 10</span>
+  </div>
+</div>
+
+<!-- ============ 04 ORIGIN ============ -->
+<div class="page" id="origin">
+  <div class="kicker"><span class="num">SECTION 03</span><span class="rule"></span><span class="lbl">ORIGIN / 原体験</span></div>
+  <h1>このままではダメだと思った。</h1>
+  <p class="lead">3年前、大好きな父が苦しむ姿を前に、何もできない自分の無力さを感じました。</p>
+  <div class="photos">
+    <figure>
+      <div class="ph"><img src="images/print/pro_tractor_boy.jpg" alt="農家に生まれ育つ"></div>
+      <figcaption>農家の家庭に生まれ、その現実をずっと近くで見てきました。</figcaption>
+    </figure>
+    <figure>
+      <div class="ph"><img src="images/print/pro_night_harvest.jpg" alt="深夜からの収穫作業"></div>
+      <figcaption>大切に育てた作物のために、深夜から始まる収穫作業。</figcaption>
+    </figure>
+    <figure>
+      <div class="ph"><img src="images/print/pro_family.jpg" alt="家族"></div>
+      <figcaption>それでも報われるとは限らない現実に、疑問と悔しさを感じていました。</figcaption>
+    </figure>
+  </div>
+  <div class="footer-row"><span class="l">MARINO ITO — SPONSORSHIP PROPOSAL</span><span class="l">04 / 10</span></div>
+</div>
+
+<!-- ============ 05 VISION ============ -->
+<div class="page" id="vision">
+  <img src="images/pro_tomato_greenhouse.jpg" alt="トマトハウスでの農作業">
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="kicker"><span class="rule"></span>SECTION 04 — VISION / ビジョン<span class="rule"></span></div>
+    <h1>「アグリアスリート」という生き方を確立<br>農業を"挑戦できる舞台"に</h1>
+    <div class="eq">
+      <div class="box"><h4>アスリート</h4><p>体力・継続力・発信力</p></div>
+      <div class="op">×</div>
+      <div class="box"><h4>農業</h4><p>労働力・現場・社会課題</p></div>
+    </div>
+    <div class="pill">新しい価値が生まれる</div>
+  </div>
+  <div class="footer-row"><span class="l">MARINO ITO — SPONSORSHIP PROPOSAL</span><span class="l">05 / 10</span></div>
+</div>
+
+<!-- ============ 06 PROJECT ============ -->
+<div class="page" id="project">
+  <div class="kicker"><span class="num">SECTION 05</span><span class="rule"></span><span class="lbl">PROJECT / アイデアを、仕組みへ</span></div>
+  <h1>個人の挑戦を、再現できる仕組みへ</h1>
+  <div class="grid">
+    <div>
+      <div class="photo"><img src="images/print/pro_tomato_action.jpg" alt="農業の現場"></div>
+      <span class="step-num">STEP 1 — 自分で証明する</span>
+      <h3>担い手ゼロ農家再生プロジェクト</h3>
+      <p class="body">「アスリート×農業は成立する」ことを、まず自分自身で証明する取り組み。秋田県東成瀬村で、担い手不足の農地の再生に携わりながら、競技と両立し、その様子をSNSで発信しています。</p>
+      <div class="tags">
+        <span class="tag">秋田県東成瀬村で活動</span>
+        <span class="tag">担い手不足の農地の再生</span>
+        <span class="tag">SNSでの発信</span>
+        <span class="tag">競技と両立 高めあう</span>
+      </div>
+    </div>
+    <div>
+      <span class="step-num">STEP 2 — モデル化する</span>
+      <h3>個人の挑戦を"再現できる仕組み"へ</h3>
+      <p class="body">この取り組みを、他の農業×競技を志す人にも広げられるように。活動の構造化と、収入の仕組み化の両面から形にしています。</p>
+      <div class="sub">
+        <h4>① 活動の構造化</h4>
+        <div class="tags"><span class="tag">農業 × 競技 × 発信</span></div>
+      </div>
+      <div class="sub">
+        <h4>② 収入の仕組み化</h4>
+        <div class="tags">
+          <span class="tag">農業収入</span>
+          <span class="tag">スポンサー</span>
+          <span class="tag">発信価値（SNS・PR）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-row"><span class="l">MARINO ITO — SPONSORSHIP PROPOSAL</span><span class="l">06 / 10</span></div>
+</div>
+
+<!-- ============ 07 SUPPORT ============ -->
+<div class="page" id="support">
+  <div class="kicker"><span class="num">SECTION 06</span><span class="rule"></span><span class="lbl">SUPPORT / 企業様にできること</span></div>
+  <h1>農業と競技、両方に本気だから伝えられることがあります</h1>
+  <div class="grid">
+    <div class="card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4a1 1 0 001 1h2l7 4V5L6 9H4a1 1 0 00-1 1z"/><path d="M14 8a4 4 0 010 8"/></svg></div>
+      <h4>発信・紹介</h4>
+      <p>商品を実際に使いながらSNSで紹介。普段の生活やトレーニングの中で、自然に触れてもらう形で。</p>
+    </div>
+    <div class="card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-8.5C.8 8 2 4.5 5.5 4c2-.3 3.6.7 4.5 2 .9-1.3 2.5-2.3 4.5-2 3.5.5 4.7 4 3 7.5C19 15.65 12 20 12 20z"/></svg></div>
+      <h4>イメージ・共感</h4>
+      <p>健康的で、頑張っている雰囲気を一緒に届ける。一つのストーリーとして共感してもらえる発信を。</p>
+    </div>
+    <div class="card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-2.5h5L16 7"/><circle cx="12" cy="13.5" r="3.4"/></svg></div>
+      <h4>写真・動画素材</h4>
+      <p>撮影した写真・動画をそのまま使用可能。企業様のSNSや広告にご活用いただけます。</p>
+    </div>
+    <div class="card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13.5L7 21l5-3 5 3-2-7.5"/></svg></div>
+      <h4>ロゴ掲出</h4>
+      <p>ヘルメット・レースウェアへのロゴ掲載。SNS・WEB上でのロゴ掲載/宣伝も対応。</p>
+    </div>
+    <div class="card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <h4>権利の付与</h4>
+      <p>ネーミング、肖像権使用、氏名・写真・映像の使用権を付与。ご希望に応じて素材をお渡しします。</p>
+    </div>
+    <div class="card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h4v2.5a1.5 1.5 0 003 0V3h2a2 2 0 012 2v2h-2.5a1.5 1.5 0 000 3H20v2a2 2 0 01-2 2h-2v-2.5a1.5 1.5 0 00-3 0V14H9a2 2 0 01-2-2v-2h2.5a1.5 1.5 0 000-3H7V5a2 2 0 012-2z"/></svg></div>
+      <h4>一緒に企画</h4>
+      <p>食事・トレーニングの企画、農産物を使ったコラボ商品、イベントや講演への参加。</p>
+    </div>
+  </div>
+  <div class="footer-row"><span class="l">MARINO ITO — SPONSORSHIP PROPOSAL</span><span class="l">07 / 10</span></div>
+</div>
+
+<!-- ============ 08 BUDGET ============ -->
+<div class="page" id="budget">
+  <div class="kicker"><span class="num">SECTION 07</span><span class="rule"></span><span class="lbl">BUDGET / 活動予算（年間）</span></div>
+  <h1>透明性をもってお伝えします</h1>
+  <p class="lead">競技を続けるうえで、実際にかかっている年間の活動費用です。</p>
+  <div class="grid">
+    <div>
+      <div class="item"><div class="name">オフシーズントレーニング費<span class="sub">トレーナー費・合宿費・交通費</span></div><div class="amt">¥218,000</div></div>
+      <div class="item"><div class="name">夏季海外遠征費<span class="sub">航空券・宿泊・リフト券</span></div><div class="amt">¥540,000</div></div>
+      <div class="item"><div class="name">ヨーロッパ遠征費（1ヶ月）<span class="sub">航空券・宿泊・リフト券</span></div><div class="amt">¥960,000</div></div>
+      <div class="item"><div class="name">北海道遠征費（1ヶ月）<span class="sub">フェリー・宿泊・リフト券</span></div><div class="amt">¥457,000</div></div>
+      <div class="item"><div class="name">シーズン国内レース転戦費<span class="sub">宿泊・リフト券・コーチング</span></div><div class="amt">¥630,000</div></div>
+      <div class="item"><div class="name">アジアカップ 韓国遠征費<span class="sub">航空券・宿泊・エントリー費</span></div><div class="amt">¥430,000</div></div>
+      <div class="item" style="border-bottom:none;"><div class="name">日々の練習・チーム登録費<span class="sub">交通費・シーズン券・登録料</span></div><div class="amt">¥245,000</div></div>
+    </div>
+    <div class="total-card">
+      <div class="cap">シーズン合計予算</div>
+      <div class="num">約 348万円</div>
+      <p class="note">この費用を、競技活動と並行してご支援いただけるスポンサー様を探しています。</p>
+    </div>
+  </div>
+  <div class="footer-row"><span class="l">MARINO ITO — SPONSORSHIP PROPOSAL</span><span class="l">08 / 10</span></div>
+</div>
+
+<!-- ============ 09 PLAN ============ -->
+<div class="page" id="plan">
+  <div class="kicker"><span class="num">SECTION 08</span><span class="rule"></span><span class="lbl">PLAN / サポートプラン</span></div>
+  <h1>支援のカタチ</h1>
+  <p class="lead">活動段階に応じて、内容は都度ご相談しながら決めさせてください。</p>
+  <div class="grid">
+    <div class="card">
+      <div class="tier">SUPPORTER</div>
+      <div class="price">¥50,000<span>〜</span></div>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>SNSでの投稿・ご紹介</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>ストーリーズでの発信</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>活動報告のご共有</li>
+      </ul>
+    </div>
+    <div class="card silver">
+      <div class="tier">SILVER</div>
+      <div class="price">¥300,000<span>〜 / 年</span></div>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>SUPPORTERの内容に加えて</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>レース・トレーニング時のウェアにロゴ掲載</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>写真・動画素材のご提供</li>
+      </ul>
+    </div>
+    <div class="card gold">
+      <div class="tier">GOLD</div>
+      <div class="price">¥1,000,000<span>〜 / 年</span></div>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>SILVERの内容に加えて</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>ヘルメットへのロゴ掲載（最も露出の高い場所）</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>SNSでのスポンサーシップ締結発表</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>商品開発・企画へのご参加</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">※ 金額・内容は目安です。ご予算やご希望に応じて柔軟にご相談させてください。</p>
+  <div class="footer-row"><span class="l">MARINO ITO — SPONSORSHIP PROPOSAL</span><span class="l">09 / 10</span></div>
+</div>
+
+<!-- ============ 10 CONTACT ============ -->
+<div class="page" id="contact">
+  <img src="images/print/pro_hero_bw.jpg" alt="雪山を見つめる伊藤麻理乃">
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="eyebrow"><span class="rule"></span>THANK YOU</div>
+    <h1>ご一緒できれば幸いです。</h1>
+    <p class="sub">御社の商品・サービスを、「実際に使い、体を作り、結果で証明する」形で発信いたします。</p>
+    <div class="contacts">
+      <a href="tel:08081623544">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        080-8162-3544
+      </a>
+      <a href="mailto:marino.ito.contact@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 6l9 7 9-7"/></svg>
+        marino.ito.contact@gmail.com
+      </a>
+      <a href="https://www.instagram.com/marino_ito/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.4"/></svg>
+        @marino_ito
+      </a>
+      <div class="site">https://marino-agriathlete.github.io/</div>
+    </div>
+  </div>
+  <div class="name-tag">伊藤麻理乃 / MARINO ITO</div>
+  <div class="pg">10 / 10</div>
+</div>
+
+</body>
+</html>
