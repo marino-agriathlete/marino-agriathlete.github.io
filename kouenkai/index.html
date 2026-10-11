@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>後援会 入会申込</title>
+<style>
+  :root {
+    --navy: #0f2d4a;
+    --gold: #c9962b;
+    --ink: #222;
+    --muted: #666;
+    --line: #d9dee5;
+    --bg: #f5f7fa;
+    --danger: #b03a2e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #eee; --muted: #aab; --line: #334; --bg: #121a24;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    line-height: 1.7;
+  }
+  header {
+    background: var(--navy); color: #fff; padding: 28px 16px; text-align: center;
+  }
+  header h1 { margin: 0; font-size: 1.4rem; letter-spacing: .05em; }
+  header p { margin: 6px 0 0; color: var(--gold); font-size: .9rem; }
+  .back { display: inline-block; margin-top: 10px; color: #fff; font-size: .85rem; opacity: .85; }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px 60px; }
+  section {
+    background: #fff; border: 1px solid var(--line); border-radius: 10px;
+    padding: 20px; margin-bottom: 18px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) section { background: #1a2433; }
+  }
+  h2 { margin: 0 0 12px; font-size: 1.05rem; color: var(--navy); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) h2 { color: var(--gold); }
+  }
+  label { display: block; font-size: .9rem; margin-bottom: 14px; }
+  label span.req { color: var(--danger); margin-left: 4px; font-size: .8rem; }
+  input, select, textarea {
+    width: 100%; margin-top: 6px; padding: 10px 12px; font-size: 1rem;
+    border: 1px solid var(--line); border-radius: 6px; background: transparent; color: inherit;
+    font-family: inherit;
+  }
+  textarea { min-height: 80px; }
+  .plan-option {
+    display: flex; gap: 10px; align-items: flex-start; padding: 12px;
+    border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; cursor: pointer;
+  }
+  .plan-option input { width: auto; margin-top: 4px; }
+  .plan-option small { display: block; color: var(--muted); }
+  .notice {
+    padding: 12px 14px; border-left: 4px solid var(--gold); background: rgba(201,150,43,.12);
+    border-radius: 6px; font-size: .9rem;
+  }
+  button {
+    width: 100%; padding: 14px; font-size: 1.05rem; border: 0; border-radius: 8px;
+    background: var(--gold); color: #fff; font-weight: bold; cursor: pointer;
+  }
+  button:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
+  .hidden { display: none; }
+  dl { display: grid; grid-template-columns: 7em 1fr; gap: 6px 12px; margin: 0; font-size: .95rem; }
+  dt { color: var(--muted); }
+  dd { margin: 0; word-break: break-all; }
+  .steps { padding-left: 1.2em; font-size: .92rem; }
+  .privacy { font-size: .85rem; color: var(--muted); margin: 0 0 14px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>後援会 入会申込</h1>
+  <p>伊藤麻理乃　2030年フランス冬季オリンピックを目指して</p>
+  <a class="back" href="../">← 公式サイトに戻る</a>
+</header>
+
+<main>
+
+  <section>
+    <h2>ご入会の流れ</h2>
+    <ol class="steps">
+      <li>下のフォームからお申込みください</li>
+      <li>振込先と会費のご案内が画面に表示されます</li>
+      <li>銀行振込でお支払いください（振込確認後、入会完了のご連絡をします）</li>
+    </ol>
+  </section>
+
+  <form id="applyForm" novalidate>
+
+    <section>
+      <h2>会費プラン</h2>
+      <div id="planList"></div>
+      <div id="planNotice" class="notice hidden">
+        会費プランは準備中です。決まり次第ご案内しますので、もうしばらくお待ちください。
+      </div>
+    </section>
+
+    <section>
+      <h2>お申込み者情報</h2>
+      <label>お名前<span class="req">必須</span>
+        <input name="name" required autocomplete="name">
+      </label>
+      <label>フリガナ<span class="req">必須</span>
+        <input name="kana" required placeholder="例: イトウ マリノ">
+      </label>
+      <label>メールアドレス<span class="req">必須</span>
+        <input name="email" type="email" required autocomplete="email">
+      </label>
+      <label>電話番号
+        <input name="tel" type="tel" autocomplete="tel">
+      </label>
+      <label>郵便番号
+        <input name="zip" autocomplete="postal-code" placeholder="例: 123-4567">
+      </label>
+      <label>ご住所
+        <input name="address" autocomplete="street-address">
+      </label>
+      <label>ご要望・メッセージ
+        <textarea name="message"></textarea>
+      </label>
+    </section>
+
+    <section>
+      <p class="privacy">ご入力いただいた個人情報は、入会手続き、会費の入金確認、会員の皆さまへのご案内のみに使用します。第三者に提供することはありません。</p>
+      <button type="submit" id="submitBtn" disabled>申込内容を確認する</button>
+    </section>
+  </form>
+
+  <section id="result" class="hidden">
+    <h2>お申込みありがとうございます</h2>
+    <p style="font-size:.92rem">以下の振込先へ会費をお振込みください。振込人名は必ずお申込みのフリガナでお願いします。</p>
+    <dl id="bankDetails"></dl>
+    <p style="font-size:.92rem">入金確認後、入会完了のご連絡をいたします。</p>
+    <p style="font-size:.85rem;color:var(--muted)">
+      申込内容を控えとしてお手元に残す場合は、下のボタンでメール本文を作成できます。
+    </p>
+    <button type="button" id="mailBtn">申込内容をメールで送る</button>
+  </section>
+
+</main>
+
+<script src="config/plans.js"></script>
+<script src="config/bank.js"></script>
+<script>
+(function () {
+  const $ = (s) => document.querySelector(s);
+  const CONTACT_EMAIL = "marino.ito.contact@gmail.com";
+  let lastApplication = null;
+
+  // 会費プランを plans.js から描画（有効なものだけ）
+  const enabledPlans = (typeof PLANS !== "undefined" ? PLANS : []).filter((p) => p.enabled);
+  const planList = $("#planList");
+  if (enabledPlans.length === 0) {
+    $("#planNotice").classList.remove("hidden");
+  } else {
+    enabledPlans.forEach((p, i) => {
+      const label = document.createElement("label");
+      label.className = "plan-option";
+      const priceText = p.price == null ? "金額未定" : `${Number(p.price).toLocaleString("ja-JP")}円`;
+      label.innerHTML =
+        `<input type="radio" name="plan" value="${p.id}" required ${i === 0 ? "checked" : ""}>` +
+        `<div><strong>${p.name}</strong>　${priceText}<small>${p.description || ""}</small></div>`;
+      planList.appendChild(label);
+    });
+    $("#submitBtn").disabled = false;
+  }
+
+  const bankReady = typeof BANK_INFO !== "undefined" && BANK_INFO.accountNumber;
+
+  function bankRows() {
+    if (!bankReady) {
+      return "<dt>振込先</dt><dd>準備中です。後ほどご案内します。</dd>";
+    }
+    const rows = [
+      ["銀行名", BANK_INFO.bankName],
+      ["支店名", BANK_INFO.branchName],
+      ["口座種別", BANK_INFO.accountType],
+      ["口座番号", BANK_INFO.accountNumber],
+      ["口座名義", BANK_INFO.accountHolder],
+    ];
+    return rows.map(([k, v]) => `<dt>${k}</dt><dd>${v || "-"}</dd>`).join("") +
+      (BANK_INFO.note ? `<dt>備考</dt><dd>${BANK_INFO.note}</dd>` : "");
+  }
+
+  $("#applyForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const form = e.target;
+    if (!form.reportValidity()) return;
+
+    const fd = new FormData(form);
+    const planId = fd.get("plan");
+    const plan = enabledPlans.find((p) => p.id === planId);
+    lastApplication = {
+      plan: plan ? `${plan.name}（${plan.price == null ? "金額未定" : plan.price + "円"}）` : "未選択",
+      name: fd.get("name"),
+      kana: fd.get("kana"),
+      email: fd.get("email"),
+      tel: fd.get("tel"),
+      zip: fd.get("zip"),
+      address: fd.get("address"),
+      message: fd.get("message"),
+    };
+
+    $("#bankDetails").innerHTML = bankRows();
+    $("#result").classList.remove("hidden");
+    $("#result").scrollIntoView({ behavior: "smooth" });
+  });
+
+  $("#mailBtn").addEventListener("click", () => {
+    if (!lastApplication) return;
+    const a = lastApplication;
+    const body = [
+      "後援会への入会を申し込みます。",
+      "",
+      `会費プラン: ${a.plan}`,
+      `お名前: ${a.name}`,
+      `フリガナ: ${a.kana}`,
+      `メール: ${a.email}`,
+      `電話: ${a.tel || "-"}`,
+      `郵便番号: ${a.zip || "-"}`,
+      `住所: ${a.address || "-"}`,
+      `メッセージ: ${a.message || "-"}`,
+    ].join("\n");
+    const subject = "【後援会】入会申込";
+    location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+})();
+</script>
+</body>
+</html>
