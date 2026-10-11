@@ -71,6 +71,8 @@
   dt { color: var(--muted); }
   dd { margin: 0; word-break: break-all; }
   .steps { padding-left: 1.2em; font-size: .92rem; }
+  .alert { border-left-color: var(--danger); background: rgba(176,58,46,.1); }
+  #copyBtn { background: var(--navy); margin-top: 8px; }
   .privacy { font-size: .85rem; color: var(--muted); margin: 0 0 14px; }
   .plan-note { font-size: .9rem; margin: 0 0 12px; }
 </style>
@@ -140,15 +142,35 @@
     </section>
   </form>
 
-  <section id="result" class="hidden">
+  <!-- 確認画面：ここではまだ申込は完了していません -->
+  <section id="confirm" class="hidden">
+    <div class="notice alert">
+      <strong>まだ申込は完了していません。</strong><br>
+      下のボタンを押してメールを送信するまで、申込は届きません。
+    </div>
+    <p style="font-size:.92rem;margin:14px 0 6px"><strong>手順</strong></p>
+    <ol class="steps">
+      <li>下のボタンを押す</li>
+      <li>メールアプリが開いたら、内容を確認して「送信」を押す</li>
+      <li>次の画面に表示される振込先へ、会費をお振込みいただく</li>
+    </ol>
+    <button type="button" id="mailBtn">申込内容をメールで送る</button>
+  </section>
+
+  <!-- 完了画面：メールを開いた後に表示 -->
+  <section id="done" class="hidden">
     <h2>お申込みありがとうございます</h2>
-    <p style="font-size:.92rem">以下の振込先へ会費をお振込みください。振込人名は必ずお申込みのフリガナでお願いします。</p>
+    <div class="notice alert">
+      <strong>メールを送信できたか、必ずご確認ください。</strong><br>
+      メールアプリが開かなかった場合や、「送信」を押していない場合は、申込が届いていません。その場合は下の内容をコピーして、<strong>marino.ito.contact@gmail.com</strong> へ送ってください。
+    </div>
+    <p style="font-size:.92rem;margin-top:14px">以下の振込先へ会費をお振込みください。振込人名は必ずお申込みのフリガナでお願いします。</p>
     <dl id="bankDetails"></dl>
     <p style="font-size:.92rem">入金確認後、入会完了のご連絡をいたします。</p>
-    <p style="font-size:.85rem;color:var(--muted)">
-      申込内容を控えとしてお手元に残す場合は、下のボタンでメール本文を作成できます。
-    </p>
-    <button type="button" id="mailBtn">申込内容をメールで送る</button>
+    <label style="margin-top:14px">申込内容（コピー用）
+      <textarea id="copyText" readonly></textarea>
+    </label>
+    <button type="button" id="copyBtn">申込内容をコピーする</button>
   </section>
 
 </main>
@@ -161,6 +183,8 @@
   const $ = (s) => document.querySelector(s);
   const CONTACT_EMAIL = "marino.ito.contact@gmail.com";
   let lastApplication = null;
+  let lastPayload = null;   // 送信用データ（口数・金額を数値で持つ）
+  let sentOnce = false;     // 同じ申込を二重に送らないため
 
   // 会費プランを plans.js から描画（有効なものだけ）
   const enabledPlans = (typeof PLANS !== "undefined" ? PLANS : []).filter((p) => p.enabled);
@@ -261,13 +285,10 @@
       message: fd.get("message"),
     };
 
-    sendApplication({ ...lastApplication, units, amount });
-    $("#bankDetails").innerHTML =
-      `<dt>口数</dt><dd>${lastApplication.units}</dd>` +
-      `<dt>お振込金額</dt><dd>${lastApplication.amount}</dd>` +
-      bankRows();
-    $("#result").classList.remove("hidden");
-    $("#result").scrollIntoView({ behavior: "smooth" });
+    lastPayload = { ...lastApplication, units, amount };
+    sentOnce = false;
+    $("#confirm").classList.remove("hidden");
+    $("#confirm").scrollIntoView({ behavior: "smooth" });
   });
 
   $("#mailBtn").addEventListener("click", () => {
@@ -288,7 +309,33 @@
       `メッセージ: ${a.message || "-"}`,
     ].join("\n");
     const subject = "【後援会】入会申込";
+    // 申込データの送信（設定されている場合）と、完了画面の表示
+    if (!sentOnce) {
+      sendApplication(lastPayload);
+      sentOnce = true;
+    }
+    $("#bankDetails").innerHTML =
+      `<dt>口数</dt><dd>${a.units}</dd>` +
+      `<dt>お振込金額</dt><dd>${a.amount}</dd>` +
+      bankRows();
+    $("#copyText").value = body;
+    $("#confirm").classList.add("hidden");
+    $("#done").classList.remove("hidden");
+    $("#done").scrollIntoView({ behavior: "smooth" });
+
     location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+
+  $("#copyBtn").addEventListener("click", async () => {
+    const text = $("#copyText");
+    try {
+      await navigator.clipboard.writeText(text.value);
+      $("#copyBtn").textContent = "コピーしました";
+    } catch (err) {
+      text.select();
+      document.execCommand("copy");
+      $("#copyBtn").textContent = "コピーしました";
+    }
   });
 })();
 </script>
