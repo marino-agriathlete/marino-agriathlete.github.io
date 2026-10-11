@@ -72,6 +72,7 @@
   dd { margin: 0; word-break: break-all; }
   .steps { padding-left: 1.2em; font-size: .92rem; }
   .privacy { font-size: .85rem; color: var(--muted); margin: 0 0 14px; }
+  .plan-note { font-size: .9rem; margin: 0 0 12px; }
 </style>
 </head>
 <body>
@@ -97,10 +98,15 @@
 
     <section>
       <h2>会費プラン</h2>
+      <p class="plan-note">各プランは１口からお申し込みいただけます。</p>
       <div id="planList"></div>
       <div id="planNotice" class="notice hidden">
         会費プランは準備中です。決まり次第ご案内しますので、もうしばらくお待ちください。
       </div>
+      <label>口数<span class="req">必須</span>
+        <input name="units" type="number" min="1" step="1" value="1" required>
+      </label>
+      <p id="totalText" class="plan-note"></p>
     </section>
 
     <section>
@@ -149,6 +155,7 @@
 
 <script src="config/plans.js"></script>
 <script src="config/bank.js"></script>
+<script src="config/endpoint.js"></script>
 <script>
 (function () {
   const $ = (s) => document.querySelector(s);
@@ -173,6 +180,36 @@
     $("#submitBtn").disabled = false;
   }
 
+  const unitsInput = document.querySelector('input[name="units"]');
+  const totalText = $("#totalText");
+
+  function getUnits() {
+    const n = parseInt(unitsInput.value, 10);
+    return Number.isFinite(n) && n >= 1 ? n : 0;
+  }
+  function selectedPlan() {
+    const checked = document.querySelector('input[name="plan"]:checked');
+    return checked ? enabledPlans.find((p) => p.id === checked.value) : null;
+  }
+  function amountOf(plan, units) {
+    return plan && plan.price != null ? plan.price * units : null;
+  }
+  function updateTotal() {
+    const plan = selectedPlan();
+    const units = getUnits();
+    if (!plan || units < 1) {
+      totalText.textContent = "";
+      return;
+    }
+    const amount = amountOf(plan, units);
+    totalText.textContent = amount == null
+      ? "請求金額：金額未定"
+      : `請求金額：${amount.toLocaleString("ja-JP")}円（${Number(plan.price).toLocaleString("ja-JP")}円 × ${units}口）`;
+  }
+  $("#applyForm").addEventListener("input", updateTotal);
+  $("#applyForm").addEventListener("change", updateTotal);
+  updateTotal();
+
   const bankReady = typeof BANK_INFO !== "undefined" && BANK_INFO.accountNumber;
 
   function bankRows() {
@@ -190,6 +227,17 @@
       (BANK_INFO.note ? `<dt>備考</dt><dd>${BANK_INFO.note}</dd>` : "");
   }
 
+  // 申込データをスプレッドシートへ送る（失敗しても画面表示は続ける）
+  function sendApplication(payload) {
+    if (typeof APPLY_ENDPOINT === "undefined" || !APPLY_ENDPOINT) return;
+    fetch(APPLY_ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+  }
+
   $("#applyForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const form = e.target;
@@ -198,8 +246,12 @@
     const fd = new FormData(form);
     const planId = fd.get("plan");
     const plan = enabledPlans.find((p) => p.id === planId);
+    const units = getUnits();
+    const amount = amountOf(plan, units);
     lastApplication = {
       plan: plan ? `${plan.name}（${plan.price == null ? "金額未定" : plan.price + "円"}）` : "未選択",
+      units: `${units}口`,
+      amount: amount == null ? "金額未定" : `${amount.toLocaleString("ja-JP")}円`,
       name: fd.get("name"),
       kana: fd.get("kana"),
       email: fd.get("email"),
@@ -209,7 +261,11 @@
       message: fd.get("message"),
     };
 
-    $("#bankDetails").innerHTML = bankRows();
+    sendApplication({ ...lastApplication, units, amount });
+    $("#bankDetails").innerHTML =
+      `<dt>口数</dt><dd>${lastApplication.units}</dd>` +
+      `<dt>お振込金額</dt><dd>${lastApplication.amount}</dd>` +
+      bankRows();
     $("#result").classList.remove("hidden");
     $("#result").scrollIntoView({ behavior: "smooth" });
   });
@@ -221,6 +277,8 @@
       "後援会への入会を申し込みます。",
       "",
       `会費プラン: ${a.plan}`,
+      `口数: ${a.units}`,
+      `請求金額: ${a.amount}`,
       `お名前: ${a.name}`,
       `フリガナ: ${a.kana}`,
       `メール: ${a.email}`,
