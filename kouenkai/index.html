@@ -72,6 +72,10 @@
   dd { margin: 0; word-break: break-all; }
   .steps { padding-left: 1.2em; font-size: .92rem; }
   .alert { border-left-color: var(--danger); background: rgba(176,58,46,.1); }
+  p.sign { text-align: right; font-weight: bold; color: var(--navy); margin: 8px 0 0; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) p.sign { color: var(--gold); }
+  }
   .check { display: flex; gap: 8px; align-items: center; margin-top: 12px; font-size: .95rem; }
   .check input { width: auto; margin: 0; }
   #copyBtn { background: var(--navy); margin-top: 8px; }
@@ -88,6 +92,31 @@
 </header>
 
 <main>
+
+  <section class="greeting">
+    <h2>ごあいさつ</h2>
+    <p>はじめまして。伊藤麻理乃です。</p>
+    <p>
+      私は農家の家庭に生まれ、スキーで培った技術を生かして、アルペンスノーボードで世界に挑戦します。
+      目指すは2030年のフランス冬季オリンピック。
+    </p>
+    <p>
+      農業と競技、どちらにも本気で向き合う中で、「地方から世界へ挑戦できる」ことを、自分の姿で証明したいと思っています。
+    </p>
+    <p class="sign">伊藤麻理乃</p>
+  </section>
+
+  <section>
+    <h2>みんなで伊藤麻理乃を応援しよう</h2>
+    <p>
+      オリンピックは、一人の力だけでは届きません。練習や遠征を支えてくださる方、農作業を応援してくださる方、一緒に夢を見てくださる方。
+      皆さまのお力を借りて、伊藤麻理乃とともに2030年のフランスへ向かいたいと考えています。
+    </p>
+    <p>
+      私たち後援会は、皆さまと一緒にこの挑戦を応援してまいります。
+    </p>
+    <p class="sign">伊藤麻理乃後援会<br>代表　並木 里也子</p>
+  </section>
 
   <section>
     <h2>ご入会の流れ</h2>
