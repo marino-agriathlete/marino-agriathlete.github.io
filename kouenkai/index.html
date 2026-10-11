@@ -72,6 +72,8 @@
   dd { margin: 0; word-break: break-all; }
   .steps { padding-left: 1.2em; font-size: .92rem; }
   .alert { border-left-color: var(--danger); background: rgba(176,58,46,.1); }
+  .check { display: flex; gap: 8px; align-items: center; margin-top: 12px; font-size: .95rem; }
+  .check input { width: auto; margin: 0; }
   #copyBtn { background: var(--navy); margin-top: 8px; }
   .privacy { font-size: .85rem; color: var(--muted); margin: 0 0 14px; }
   .plan-note { font-size: .9rem; margin: 0 0 12px; }
@@ -109,6 +111,18 @@
         <input name="units" type="number" min="1" step="1" required>
       </label>
       <p id="totalText" class="plan-note"></p>
+    </section>
+
+    <section>
+      <h2>会員特典</h2>
+      <p class="plan-note">入会された方には、次の特典をご案内しています。</p>
+      <ul class="steps">
+        <li><strong>サポーターズLINEへのご招待</strong>（希望者）<br>日々の活動の様子を、LINEでご覧いただけます。</li>
+      </ul>
+      <label class="check">
+        <input type="checkbox" name="lineInvite">
+        サポーターズLINEへの招待を希望する
+      </label>
     </section>
 
     <section>
@@ -273,7 +287,8 @@
     const units = getUnits();
     const amount = amountOf(plan, units);
     lastApplication = {
-      plan: plan ? `${plan.name}（${plan.price == null ? "金額未定" : plan.price + "円"}）` : "未選択",
+      lineInvite: fd.get("lineInvite") ? "希望する" : "希望しない",
+      plan: plan ?`${plan.name}（${plan.price == null ? "金額未定" : plan.price + "円"}）` : "未選択",
       units: `${units}口`,
       amount: amount == null ? "金額未定" : `${amount.toLocaleString("ja-JP")}円`,
       name: fd.get("name"),
@@ -306,6 +321,7 @@
       `電話: ${a.tel || "-"}`,
       `郵便番号: ${a.zip || "-"}`,
       `住所: ${a.address || "-"}`,
+      `サポーターズLINE招待: ${a.lineInvite}`,
       `メッセージ: ${a.message || "-"}`,
     ].join("\n");
     const subject = "【後援会】入会申込";
